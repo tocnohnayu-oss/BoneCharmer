@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 	var new_state = State.WALK if direction else State.IDLE
 	if new_state != current_state:
 		current_state = new_state
-		update_animation()
+		update_state()
 	velocity = direction * SPEED
 	shadow.modulate = Color(0, 0, 0, 0.4)
 	shadow.scale = Vector2(0.8, 0.4)
@@ -34,12 +34,38 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func update_animation() -> void:
+func update_state() -> void:
 	var animation_type
+	
 	match(current_state):
-		State.IDLE: animation_type = &"idle"
-		State.WALK: animation_type = &"walk"
-		State.ATTACK: animation_type = &"attack"
-		State.HIT: animation_type = &"hit"
+		State.IDLE:
+			animation_type = &"idle"
+			idle()
+		State.WALK:
+			animation_type = &"walk"
+			walk()
+		State.ATTACK:
+			animation_type = &"attack"
+			attack()
+		State.HIT:
+			animation_type = &"hit"
+			hit()
+			
 	sprite.animation = animation_type
 	sprite.play()
+
+
+func idle() -> void:
+	pass
+
+
+func walk() -> void:
+	pass
+
+
+func attack() -> void:
+	pass
+
+
+func hit() -> void:
+	pass

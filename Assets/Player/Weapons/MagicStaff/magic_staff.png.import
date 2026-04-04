@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bx8wrfxm8632q"
-path="res://.godot/imported/graveyard-tilemap-v1.png-b7deece69abe6384707a0d5f73f70b99.ctex"
+uid="uid://draf55nsl7vaq"
+path="res://.godot/imported/magic_staff.png-da858b76145690b8143570606653ceb0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player/graveyard-tilemap-v1.png"
-dest_files=["res://.godot/imported/graveyard-tilemap-v1.png-b7deece69abe6384707a0d5f73f70b99.ctex"]
+source_file="res://Assets/Player/Weapons/MagicStaff/magic_staff.png"
+dest_files=["res://.godot/imported/magic_staff.png-da858b76145690b8143570606653ceb0.ctex"]
 
 [params]
 

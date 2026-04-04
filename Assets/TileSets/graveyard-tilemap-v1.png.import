@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mlrx5cpw2wx4"
-path="res://.godot/imported/BoneCharmer.png-bb56ce1d2406f1cd90aab255dd4e425a.ctex"
+uid="uid://bx8wrfxm8632q"
+path="res://.godot/imported/graveyard-tilemap-v1.png-d67cd5a2834dbd9de64fd31a9b85b440.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player/BoneCharmer.png"
-dest_files=["res://.godot/imported/BoneCharmer.png-bb56ce1d2406f1cd90aab255dd4e425a.ctex"]
+source_file="res://Assets/TileSets/graveyard-tilemap-v1.png"
+dest_files=["res://.godot/imported/graveyard-tilemap-v1.png-d67cd5a2834dbd9de64fd31a9b85b440.ctex"]
 
 [params]
 

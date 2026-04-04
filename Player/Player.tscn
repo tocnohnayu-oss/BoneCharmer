@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cwhacn8sl0sw6" path="res://Assets/Player/Shadow.png" id="2_8g4oa"]
 [ext_resource type="Texture2D" uid="uid://beq7v8aetuqaa" path="res://Assets/Player/MainCharacter-idle-Sheet.png" id="2_ddoul"]
 [ext_resource type="Texture2D" uid="uid://coe8s11l46bc0" path="res://Assets/Player/MainCharacter-walk-Sheet.png" id="3_8g4oa"]
-[ext_resource type="Texture2D" uid="uid://draf55nsl7vaq" path="res://Assets/Player/magic_staff.png" id="4_ddoul"]
+[ext_resource type="Texture2D" uid="uid://draf55nsl7vaq" path="res://Assets/Player/Weapons/MagicStaff/magic_staff.png" id="4_ddoul"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ysni"]
 atlas = ExtResource("2_ddoul")
@@ -143,6 +143,11 @@ shape = SubResource("CircleShape2D_roy6y")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1337077199]
 zoom = Vector2(6, 6)
 process_callback = 0
+limit_left = 0
+limit_top = 0
+limit_right = 1152
+limit_bottom = 640
+limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 

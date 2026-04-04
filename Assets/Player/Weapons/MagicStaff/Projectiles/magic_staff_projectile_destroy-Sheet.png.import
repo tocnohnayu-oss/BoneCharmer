@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://draf55nsl7vaq"
-path="res://.godot/imported/magic_staff.png-9705356794cc123cf3ecb1ec539a05d7.ctex"
+uid="uid://d005d1ran1ql6"
+path="res://.godot/imported/magic_staff_projectile_destroy-Sheet.png-32b12f509ea4444a911b83c7ecccd3df.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player/magic_staff.png"
-dest_files=["res://.godot/imported/magic_staff.png-9705356794cc123cf3ecb1ec539a05d7.ctex"]
+source_file="res://Assets/Player/Weapons/MagicStaff/Projectiles/magic_staff_projectile_destroy-Sheet.png"
+dest_files=["res://.godot/imported/magic_staff_projectile_destroy-Sheet.png-32b12f509ea4444a911b83c7ecccd3df.ctex"]
 
 [params]
 
