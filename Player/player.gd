@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 200.0
+const SPEED = 50.0
 enum State {
 	IDLE,
 	WALK,
@@ -10,6 +10,11 @@ enum State {
 }
 var current_state = State.IDLE
 @onready var sprite = $AnimatedSprite2D
+@onready var shadow = $Shadow
+
+
+func _ready() -> void:
+	shadow.visible = true
 
 
 func _physics_process(delta: float) -> void:
@@ -23,6 +28,9 @@ func _physics_process(delta: float) -> void:
 		current_state = new_state
 		update_animation()
 	velocity = direction * SPEED
+	shadow.modulate = Color(0, 0, 0, 0.4)
+	shadow.scale = Vector2(0.8, 0.4)
+	shadow.position = Vector2(0, 27)
 	move_and_slide()
 
 
