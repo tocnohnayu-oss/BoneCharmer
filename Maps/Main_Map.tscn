@@ -6,3 +6,5 @@
 
 [node name="Player" parent="." unique_id=1861182355 instance=ExtResource("1_s4ku5")]
 position = Vector2(0, -2)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1783706571]
