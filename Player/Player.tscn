@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bqgm7ct511gyi" path="res://Player/player.gd" id="1_tok1r"]
 [ext_resource type="Texture2D" uid="uid://beq7v8aetuqaa" path="res://Assets/Player/MainCharacter-idle-Sheet.png" id="2_ddoul"]
 [ext_resource type="Texture2D" uid="uid://coe8s11l46bc0" path="res://Assets/Player/MainCharacter-walk-Sheet.png" id="3_8g4oa"]
+[ext_resource type="Texture2D" uid="uid://draf55nsl7vaq" path="res://Assets/Player/magic_staff.png" id="4_ddoul"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ysni"]
 atlas = ExtResource("2_ddoul")
@@ -119,13 +120,25 @@ animations = [{
 radius = 11.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1861182355]
+y_sort_enabled = true
 script = ExtResource("1_tok1r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2073539930]
 sprite_frames = SubResource("SpriteFrames_evw08")
 animation = &"idle"
-frame_progress = 0.42784527
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2125139321]
+visible = false
 position = Vector2(-1, 9)
 shape = SubResource("CircleShape2D_roy6y")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1337077199]
+zoom = Vector2(3, 3)
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="MagicStaff" type="Sprite2D" parent="." unique_id=1502504179]
+position = Vector2(17, 3.0000007)
+rotation = 0.1605703
+texture = ExtResource("4_ddoul")

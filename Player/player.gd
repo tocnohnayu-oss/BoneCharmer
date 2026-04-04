@@ -1,25 +1,37 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const SPEED = 200.0
+enum State {
+	IDLE,
+	WALK,
+	ATTACK,
+	HIT
+}
+var current_state = State.IDLE
+@onready var sprite = $AnimatedSprite2D
 
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+	var direction = Vector2.ZERO
+	direction.x = Input.get_axis("ui_left", "ui_right")
+	direction.y = Input.get_axis("ui_up", "ui_down")
+	direction = direction.normalized()
+	sprite.flip_h = direction.x < 0 if direction.x else sprite.flip_h
+	var new_state = State.WALK if direction else State.IDLE
+	if new_state != current_state:
+		current_state = new_state
+		update_animation()
+	velocity = direction * SPEED
 	move_and_slide()
+
+
+func update_animation() -> void:
+	var animation_type
+	match(current_state):
+		State.IDLE: animation_type = &"idle"
+		State.WALK: animation_type = &"walk"
+		State.ATTACK: animation_type = &"attack"
+		State.HIT: animation_type = &"hit"
+	sprite.animation = animation_type
+	sprite.play()
