@@ -11,6 +11,7 @@ enum State {
 var current_state = State.IDLE
 @onready var sprite = $AnimatedSprite2D
 @onready var shadow = $Shadow
+@onready var magic_staff = $MagicStaff
 
 
 func _ready() -> void:
@@ -18,6 +19,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if current_state == State.ATTACK or current_state == State.HIT:
+		return
 	var direction = Vector2.ZERO
 	direction.x = Input.get_axis("ui_left", "ui_right")
 	direction.y = Input.get_axis("ui_up", "ui_down")
@@ -34,6 +37,11 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
+func _input(event):
+	if event.is_action_pressed("attack"):
+		current_state = State.ATTACK
+		update_state()
+
 func update_state() -> void:
 	var animation_type
 	
@@ -45,10 +53,12 @@ func update_state() -> void:
 			animation_type = &"walk"
 			walk()
 		State.ATTACK:
-			animation_type = &"attack"
+			#animation_type = &"attack"
+			animation_type = &"idle"
 			attack()
 		State.HIT:
-			animation_type = &"hit"
+			#animation_type = &"hit"
+			animation_type = &"idle"
 			hit()
 			
 	sprite.animation = animation_type
@@ -64,8 +74,12 @@ func walk() -> void:
 
 
 func attack() -> void:
-	pass
+	var target = get_global_mouse_position()
+	var attack_direction = target - global_position
+	attack_direction = attack_direction.normalized()
+	magic_staff.create_bullet(attack_direction, target)
+	current_state = State.IDLE
 
 
 func hit() -> void:
-	pass
+	current_state = State.IDLE
