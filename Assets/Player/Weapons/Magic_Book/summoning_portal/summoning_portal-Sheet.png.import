@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bx8wrfxm8632q"
-path="res://.godot/imported/graveyard-tilemap-v1.png-d67cd5a2834dbd9de64fd31a9b85b440.ctex"
+uid="uid://b8fvp2u0xxl0h"
+path="res://.godot/imported/summoning_portal-Sheet.png-0ed00d215970c58dd191f8dc906cde6c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/TileSets/graveyard-tilemap-v1.png"
-dest_files=["res://.godot/imported/graveyard-tilemap-v1.png-d67cd5a2834dbd9de64fd31a9b85b440.ctex"]
+source_file="res://Assets/Player/Weapons/Magic_Book/summoning_portal/summoning_portal-Sheet.png"
+dest_files=["res://.godot/imported/summoning_portal-Sheet.png-0ed00d215970c58dd191f8dc906cde6c.ctex"]
 
 [params]
 

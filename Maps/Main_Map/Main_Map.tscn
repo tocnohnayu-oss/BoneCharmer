@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://c11r1rcagpp25"]
 
-[ext_resource type="Texture2D" uid="uid://bx8wrfxm8632q" path="res://Assets/TileSets/graveyard-tilemap-v1.png" id="2_kff6u"]
+[ext_resource type="Texture2D" uid="uid://bx8wrfxm8632q" path="res://Assets/TileSets/graveyard/graveyard-tilemap-v1.png" id="2_kff6u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f1vxt"]
 texture = ExtResource("2_kff6u")

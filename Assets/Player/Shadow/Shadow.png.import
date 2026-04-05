@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://beq7v8aetuqaa"
-path="res://.godot/imported/MainCharacter-idle-Sheet.png-40cc77d9a6d40e77ec665ffe8475f73d.ctex"
+uid="uid://cwhacn8sl0sw6"
+path="res://.godot/imported/Shadow.png-dbcc9c7b00d18274520b0c2e5c0919f7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player/MainCharacter-idle-Sheet.png"
-dest_files=["res://.godot/imported/MainCharacter-idle-Sheet.png-40cc77d9a6d40e77ec665ffe8475f73d.ctex"]
+source_file="res://Assets/Player/Shadow/Shadow.png"
+dest_files=["res://.godot/imported/Shadow.png-dbcc9c7b00d18274520b0c2e5c0919f7.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwhacn8sl0sw6"
-path="res://.godot/imported/Shadow.png-3ff9085fe4891909a32822a7c235b831.ctex"
+uid="uid://coe8s11l46bc0"
+path="res://.godot/imported/MainCharacter-walk-Sheet.png-0ce4265eef1a199fcd594fb3083ede03.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player/Shadow.png"
-dest_files=["res://.godot/imported/Shadow.png-3ff9085fe4891909a32822a7c235b831.ctex"]
+source_file="res://Assets/Player/animations/MainCharacter-walk-Sheet.png"
+dest_files=["res://.godot/imported/MainCharacter-walk-Sheet.png-0ce4265eef1a199fcd594fb3083ede03.ctex"]
 
 [params]
 
