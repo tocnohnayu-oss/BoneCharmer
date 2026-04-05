@@ -373,6 +373,9 @@ one_shot = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=635296673]
 libraries/ = SubResource("AnimationLibrary_uwkoh")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=903083782]
+volume_db = -8.965
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
 [connection signal="timeout" from="HPBarTimer" to="." method="_on_hp_bar_timer_timeout"]

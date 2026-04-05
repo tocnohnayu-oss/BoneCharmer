@@ -86,6 +86,7 @@ func attack() -> void:
 	get_tree().call_group("Player_Skeleton", "follow_player")
 	current_state = State.IDLE
 	change_weapon($MagicStaff)
+	$AudioStreamPlayer2D.play(0)
 
 
 func hit() -> void:

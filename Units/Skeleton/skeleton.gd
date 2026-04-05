@@ -28,6 +28,10 @@ var current_state = State.IDLE
 @onready var hpbar = $HPBar
 @onready var anim_player = $AnimationPlayer
 @onready var hitbox = $Hitbox
+@onready var audio_streamer = $AudioStreamPlayer2D
+@onready var death_sound = preload("res://Assets/Units/Skeleton/Sounds/Skeleton_death/skeleton_death_sound.mp3")
+@onready var spawn_sound = preload("res://Assets/Units/Skeleton/Sounds/Skeleton_revive_spawn/skeleton_bone_crack_sound.mp3")
+@onready var attack_sound = preload("res://Assets/Units/Skeleton/Sounds/Skeleton_sword_slash/sword_slash_sound.mp3")
 var target_position = global_position
 var is_dead = false
 var targeted_enemy = null
@@ -127,6 +131,8 @@ func _on_attacked_by_player():
 
 
 func die():
+	audio_streamer.stream = death_sound
+	audio_streamer.play()
 	is_dead = true
 	sprite.play("death")
 	current_state = State.DEAD
@@ -149,6 +155,8 @@ func update_settings():
 
 
 func revive(new_type):
+	audio_streamer.stream = spawn_sound
+	audio_streamer.play()
 	sprite.play("death", -1, true)
 	await sprite.animation_finished
 	type = new_type
@@ -165,7 +173,11 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		return
 	update_state(State.ATTACK)
 	sprite.play("attack")
+	audio_streamer.stream = attack_sound
+	audio_streamer.play()
 	await sprite.animation_finished
 	other_skeleton.hit(damage)
 	if other_skeleton.is_dead:
 		update_state(State.IDLE)
+	if is_dead:
+		sprite.play("death")
