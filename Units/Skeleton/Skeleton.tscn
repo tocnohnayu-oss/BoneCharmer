@@ -4,9 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://bfehymttyeyok" path="res://Assets/Units/Skeleton/animations/skeleton-attack-Sheet.png" id="2_hsq1d"]
 [ext_resource type="Texture2D" uid="uid://c3crl3tusx6qv" path="res://Assets/Units/Skeleton/animations/skeleton-idle-Sheet.png" id="3_xo32e"]
 [ext_resource type="Texture2D" uid="uid://bs2ad57qnbnlb" path="res://Assets/Units/Skeleton/animations/skeleton-walk-Sheet.png" id="4_1orvo"]
+[ext_resource type="Texture2D" uid="uid://bgn4mv4lib3nx" path="res://Assets/Units/Skeleton/animations/skeleton-death-Sheet.png" id="4_x2ac5"]
 [ext_resource type="Texture2D" uid="uid://bo2n28btl7af" path="res://Assets/Player/Alie_sign_triangle/alian_sign_triangle-Sheet.png" id="5_1orvo"]
 [ext_resource type="Texture2D" uid="uid://c68y7efv5th4c" path="res://Assets/Units/Enemy_Sign_Triangle/enemy_sign_triangle-Sheet.png" id="6_g8ebj"]
 [ext_resource type="Texture2D" uid="uid://cwhacn8sl0sw6" path="res://Assets/Player/Shadow/Shadow.png" id="7_g8ebj"]
+[ext_resource type="Texture2D" uid="uid://bcix5ju3i4qtp" path="res://Assets/Units/Progress_Bar/Under_progress_bar.png" id="8_8javn"]
+[ext_resource type="Texture2D" uid="uid://bsij6q16hluty" path="res://Assets/Units/Progress_Bar/over_progress_bar.png" id="9_x2ac5"]
+[ext_resource type="Texture2D" uid="uid://dg7ugc5k7qsxg" path="res://Assets/Units/Progress_Bar/Progress_progress_bar.png" id="10_s4rgf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g8ebj"]
 atlas = ExtResource("2_hsq1d")
@@ -39,6 +43,30 @@ region = Rect2(192, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_abtlj"]
 atlas = ExtResource("2_hsq1d")
 region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rh4hx"]
+atlas = ExtResource("4_x2ac5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1mv4"]
+atlas = ExtResource("4_x2ac5")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgfg6"]
+atlas = ExtResource("4_x2ac5")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahofb"]
+atlas = ExtResource("4_x2ac5")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0w82d"]
+atlas = ExtResource("4_x2ac5")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xx55d"]
+atlas = ExtResource("4_x2ac5")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uaqrl"]
 atlas = ExtResource("3_xo32e")
@@ -95,8 +123,31 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_abtlj")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rh4hx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m1mv4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgfg6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahofb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0w82d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xx55d")
+}],
+"loop": false,
+"name": &"death",
 "speed": 10.0
 }, {
 "frames": [{
@@ -204,9 +255,64 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m1mv4"]
-radius = 8.0
+radius = 22.0
+height = 48.0
 
-[node name="Skeleton" type="CharacterBody2D" unique_id=1322257839 groups=["Player_Skeleton"]]
+[sub_resource type="Animation" id="Animation_8javn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HPBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_x2ac5"]
+resource_name = "hpbar_appear"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HPBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_s4rgf"]
+resource_name = "hpbar_disappear"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HPBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uwkoh"]
+_data = {
+&"RESET": SubResource("Animation_8javn"),
+&"hpbar_appear": SubResource("Animation_x2ac5"),
+&"hpbar_disappear": SubResource("Animation_s4rgf")
+}
+
+[node name="Skeleton" type="CharacterBody2D" unique_id=1322257839 groups=["Skeleton"]]
 y_sort_enabled = true
 scale = Vector2(0.5, 0.5)
 collision_layer = 0
@@ -221,8 +327,7 @@ texture = ExtResource("7_g8ebj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=447337135]
 sprite_frames = SubResource("SpriteFrames_wqtvh")
-animation = &"idle"
-frame_progress = 0.64717764
+animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=312238468]
 position = Vector2(1, 7)
@@ -234,19 +339,40 @@ position = Vector2(-1, -20)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_rh4hx")
 animation = &"ally"
-frame_progress = 0.9148621
+frame_progress = 0.2666719
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1167711815]
+[node name="Hitbox" type="Area2D" parent="." unique_id=1167711815]
 collision_layer = 0
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=177678747]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=177678747]
 shape = SubResource("CapsuleShape2D_m1mv4")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=765763925]
 
 [node name="IdleTimer" type="Timer" parent="." unique_id=610679753]
 process_callback = 0
+wait_time = 2.0
 one_shot = true
 
+[node name="HPBar" type="TextureProgressBar" parent="." unique_id=1816687895]
+offset_left = -14.0
+offset_top = -32.0
+offset_right = 2.0
+offset_bottom = -29.0
+scale = Vector2(1.845, 1.845)
+value = 100.0
+texture_under = ExtResource("8_8javn")
+texture_over = ExtResource("9_x2ac5")
+texture_progress = ExtResource("10_s4rgf")
+
+[node name="HPBarTimer" type="Timer" parent="." unique_id=1380013871]
+process_callback = 0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=635296673]
+libraries/ = SubResource("AnimationLibrary_uwkoh")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
+[connection signal="timeout" from="HPBarTimer" to="." method="_on_hp_bar_timer_timeout"]

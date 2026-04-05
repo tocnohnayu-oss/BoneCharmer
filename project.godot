@@ -31,6 +31,7 @@ Main_Scene="the main scene of the project "
 Enemy=""
 Player=""
 Player_Skeleton=""
+Skeleton=""
 
 [input]
 

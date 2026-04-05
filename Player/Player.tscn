@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://coe8s11l46bc0" path="res://Assets/Player/animations/MainCharacter-walk-Sheet.png" id="3_8g4oa"]
 [ext_resource type="Texture2D" uid="uid://draf55nsl7vaq" path="res://Assets/Player/Weapons/MagicStaff/magic_staff.png" id="4_ddoul"]
 [ext_resource type="Script" uid="uid://dyciik3hwwej0" path="res://Player/Weapons/Magic_Staff/magic_staff.gd" id="6_6ysni"]
+[ext_resource type="Texture2D" uid="uid://b285yxfx5glow" path="res://Assets/Player/Weapons/Magic_Book/magic_book.png" id="7_vlldt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ysni"]
 atlas = ExtResource("2_ddoul")
@@ -159,3 +160,10 @@ position = Vector2(17, 3.0000007)
 rotation = 0.1605703
 texture = ExtResource("4_ddoul")
 script = ExtResource("6_6ysni")
+
+[node name="MagicBook" type="Sprite2D" parent="." unique_id=960362939]
+visible = false
+position = Vector2(18, 6)
+rotation = 0.2443461
+scale = Vector2(0.645, 0.645)
+texture = ExtResource("7_vlldt")

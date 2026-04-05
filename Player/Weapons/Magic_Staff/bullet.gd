@@ -4,7 +4,7 @@ extends Area2D
 @onready var sprite = $AnimatedSprite2D
 @export var direction = Vector2.ZERO
 @export var SPEED = 20.0
-@export var ACCELERATION = 5.00
+@export var ACCELERATION = 10.0
 var kill_position = Vector2.ZERO
 var flied_distance = Vector2.ZERO
 var damage = 0

@@ -9,6 +9,7 @@ enum State {
 	HIT
 }
 var current_state = State.IDLE
+@onready var weapons = [$MagicStaff, $MagicBook]
 @onready var sprite = $AnimatedSprite2D
 @onready var shadow = $Shadow
 @onready var magic_staff = $MagicStaff
@@ -17,6 +18,7 @@ var current_state = State.IDLE
 
 func _ready() -> void:
 	shadow.visible = true
+	change_weapon($MagicStaff)
 
 
 func _physics_process(delta: float) -> void:
@@ -43,7 +45,7 @@ func _input(event):
 		current_state = State.ATTACK
 		update_state()
 	elif event.is_action_pressed("summon"):
-		summon_skeletons_in_area()
+		revive_skeletons_in_area()
 
 func update_state() -> void:
 	var animation_type
@@ -83,6 +85,7 @@ func attack() -> void:
 	magic_staff.create_bullet(attack_direction, target)
 	get_tree().call_group("Player_Skeleton", "follow_player")
 	current_state = State.IDLE
+	change_weapon($MagicStaff)
 
 
 func hit() -> void:
@@ -95,3 +98,21 @@ func summon_skeletons_in_area():
 	skeleton.type = skeleton.Type.ALLY
 	skeleton.collision_layer = 1
 	get_tree().get_first_node_in_group("Main_Scene").add_child(skeleton)
+	change_weapon($MagicBook)
+
+
+func revive_skeletons_in_area():
+	var skeletons = get_tree().get_nodes_in_group("Skeleton")
+	if not skeletons:
+		return
+	var target_area = get_global_mouse_position()
+	var max_distance = 50.0
+	for skeleton in skeletons:
+		if target_area.distance_to(skeleton.global_position) <= max_distance and skeleton.is_dead:
+			skeleton.revive(skeleton.Type.ALLY)
+	change_weapon($MagicBook)
+
+
+func change_weapon(new_weapon):
+	for weapon in weapons:
+			weapon.visible = weapon == new_weapon
