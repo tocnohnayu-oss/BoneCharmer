@@ -12,7 +12,8 @@ var current_state = State.IDLE
 @onready var sprite = $AnimatedSprite2D
 @onready var shadow = $Shadow
 @onready var magic_staff = $MagicStaff
-
+@onready var skeleton_scene = preload("res://Units/Skeleton/Skeleton.tscn")
+@export var summon_area = 50.0
 
 func _ready() -> void:
 	shadow.visible = true
@@ -41,6 +42,8 @@ func _input(event):
 	if event.is_action_pressed("attack"):
 		current_state = State.ATTACK
 		update_state()
+	elif event.is_action_pressed("summon"):
+		summon_skeletons_in_area()
 
 func update_state() -> void:
 	var animation_type
@@ -78,8 +81,17 @@ func attack() -> void:
 	var attack_direction = target - global_position
 	attack_direction = attack_direction.normalized()
 	magic_staff.create_bullet(attack_direction, target)
+	get_tree().call_group("Player_Skeleton", "follow_player")
 	current_state = State.IDLE
 
 
 func hit() -> void:
 	current_state = State.IDLE
+
+
+func summon_skeletons_in_area():
+	var skeleton = skeleton_scene.instantiate()
+	skeleton.global_position = get_global_mouse_position()
+	skeleton.type = skeleton.Type.ALLY
+	skeleton.collision_layer = 1
+	get_tree().get_first_node_in_group("Main_Scene").add_child(skeleton)

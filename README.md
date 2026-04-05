@@ -17,7 +17,7 @@
 
 ## 🎨 Визуал (Work in Progress)
 тут можно вставить гифку или скриншот твоего тайлсета
-![Main Hero](Player/hero_idle.png) 
+![Main Hero](Assets/Player/MainCharacter-Sheet.png) 
 *Наш главный герой — Bonecharmer*
 
 ---

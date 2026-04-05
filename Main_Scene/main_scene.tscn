@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://b87wqprwi3keb" path="res://Main_Scene/main_scene.gd" id="1_gyfs4"]
 
 [node name="Main Scene" type="Node2D" unique_id=1931658074 groups=["Main_Scene"]]
+y_sort_enabled = true
 script = ExtResource("1_gyfs4")
