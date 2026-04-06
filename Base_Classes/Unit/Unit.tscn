@@ -1,0 +1,275 @@
+[gd_scene format=3 uid="uid://ddil182np4ukg"]
+
+[ext_resource type="Script" uid="uid://dccrmcl4nak4h" path="res://Base_Classes/Unit/unit.gd" id="1_13gh3"]
+[ext_resource type="Texture2D" uid="uid://cwhacn8sl0sw6" path="res://Assets/Player/Shadow/Shadow.png" id="2_8a5b6"]
+[ext_resource type="Texture2D" uid="uid://bcix5ju3i4qtp" path="res://Assets/Units/Progress_Bar/Under_progress_bar.png" id="3_ehc0m"]
+[ext_resource type="Texture2D" uid="uid://bsij6q16hluty" path="res://Assets/Units/Progress_Bar/over_progress_bar.png" id="4_5bx3k"]
+[ext_resource type="Texture2D" uid="uid://dg7ugc5k7qsxg" path="res://Assets/Units/Progress_Bar/Progress_progress_bar.png" id="5_576yh"]
+[ext_resource type="Texture2D" uid="uid://bo2n28btl7af" path="res://Assets/Player/Alie_sign_triangle/alian_sign_triangle-Sheet.png" id="6_101tt"]
+[ext_resource type="Texture2D" uid="uid://c68y7efv5th4c" path="res://Assets/Units/Enemy_Sign_Triangle/enemy_sign_triangle-Sheet.png" id="7_w6i7s"]
+[ext_resource type="Script" uid="uid://bb0t2ovl7wifo" path="res://addons/beehave/nodes/beehave_tree.gd" id="8_w8lp7"]
+[ext_resource type="Script" uid="uid://8hn4kne15ac5" path="res://addons/beehave/nodes/composites/selector.gd" id="9_ehc0m"]
+[ext_resource type="Script" uid="uid://cg016dbe7gs1x" path="res://addons/beehave/nodes/composites/sequence.gd" id="10_101tt"]
+[ext_resource type="Script" uid="uid://brvuem8rklgte" path="res://Base_Classes/Unit/Beehave_Scripts/Attack_Sequence/Is_Enemy_Conditions.gd" id="11_3agqq"]
+[ext_resource type="Script" uid="uid://sjc4ytn2xkds" path="res://Base_Classes/Unit/Beehave_Scripts/DEATH_SEQUENCE/Is_Dead_Conditions.gd" id="11_ya0hg"]
+[ext_resource type="Script" uid="uid://67m2jmox2kp6" path="res://Base_Classes/Unit/Beehave_Scripts/DEATH_SEQUENCE/DEAD.gd" id="12_uyp1i"]
+[ext_resource type="Script" uid="uid://c4b8nirwxqie4" path="res://Base_Classes/Unit/Beehave_Scripts/Attack_Sequence/ATTACK.gd" id="12_w6i7s"]
+[ext_resource type="Script" uid="uid://ma4ls4ja5135" path="res://Base_Classes/Unit/Beehave_Scripts/FollowPlayerSequence/FOLLOWPLAYER.gd" id="13_kugvc"]
+[ext_resource type="Script" uid="uid://b4weuh4vtsgli" path="res://Base_Classes/Unit/Beehave_Scripts/FollowPlayerSequence/Is_Follow_Player_Condition.gd" id="13_uyp1i"]
+[ext_resource type="Script" uid="uid://bbswp77y7wa6q" path="res://Base_Classes/Unit/Beehave_Scripts/Walk_Sequence/WALK.gd" id="14_jue1s"]
+[ext_resource type="Script" uid="uid://b2ynear4s4lec" path="res://Base_Classes/Unit/Beehave_Scripts/Walk_Sequence/Is_Walk_Conditions.gd" id="15_3agqq"]
+[ext_resource type="Script" uid="uid://csr22gb41ijgt" path="res://Base_Classes/Unit/Beehave_Scripts/Idle/IDLE.gd" id="17_3agqq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kugvc"]
+radius = 7.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqtvh"]
+atlas = ExtResource("6_101tt")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmadx"]
+atlas = ExtResource("6_101tt")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kc7lw"]
+atlas = ExtResource("6_101tt")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjb2w"]
+atlas = ExtResource("6_101tt")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejy30"]
+atlas = ExtResource("7_w6i7s")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tkjg"]
+atlas = ExtResource("7_w6i7s")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cisk"]
+atlas = ExtResource("7_w6i7s")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i65qb"]
+atlas = ExtResource("7_w6i7s")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jue1s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqtvh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmadx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kc7lw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjb2w")
+}],
+"loop": true,
+"name": &"ally",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejy30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tkjg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cisk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i65qb")
+}],
+"loop": true,
+"name": &"enemy",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3agqq"]
+radius = 22.0
+height = 48.0
+
+[sub_resource type="Animation" id="Animation_8javn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HPBar/HPBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_x2ac5"]
+resource_name = "hpbar_appear"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HPBar/HPBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_s4rgf"]
+resource_name = "hpbar_disappear"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HPBar/HPBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uyp1i"]
+_data = {
+&"RESET": SubResource("Animation_8javn"),
+&"hpbar_appear": SubResource("Animation_x2ac5"),
+&"hpbar_disappear": SubResource("Animation_s4rgf")
+}
+
+[node name="Unit" type="CharacterBody2D" unique_id=672684683]
+script = ExtResource("1_13gh3")
+
+[node name="HPBar" type="Node2D" parent="." unique_id=781994207]
+
+[node name="HPBar" type="TextureProgressBar" parent="HPBar" unique_id=1215951956]
+offset_left = -14.0
+offset_top = -32.0
+offset_right = 2.0
+offset_bottom = -29.0
+scale = Vector2(1.845, 1.845)
+value = 100.0
+texture_under = ExtResource("3_ehc0m")
+texture_over = ExtResource("4_5bx3k")
+texture_progress = ExtResource("5_576yh")
+
+[node name="HPBarTimer" type="Timer" parent="HPBar" unique_id=1135876632]
+process_callback = 0
+one_shot = true
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1458279369]
+visible = false
+z_index = -1
+position = Vector2(0, 2)
+texture = ExtResource("2_8a5b6")
+
+[node name="UnitAudioStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1393284168]
+volume_db = -8.965
+
+[node name="UnitAnimatedSprite" type="AnimatedSprite2D" parent="." unique_id=1137653636]
+animation = &""
+
+[node name="UnitCollision" type="CollisionShape2D" parent="." unique_id=222583247]
+position = Vector2(1, 7)
+shape = SubResource("CircleShape2D_kugvc")
+
+[node name="TeamTriangle" type="AnimatedSprite2D" parent="." unique_id=1485502779]
+z_index = 1
+position = Vector2(-1, -20)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_jue1s")
+animation = &"ally"
+
+[node name="UnitNavigationAgent" type="NavigationAgent2D" parent="." unique_id=2114521078]
+navigation_layers = 3
+
+[node name="IdleTimer" type="Timer" parent="." unique_id=2041938132]
+process_callback = 0
+wait_time = 2.0
+one_shot = true
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1592334801]
+collision_layer = 0
+collision_mask = 0
+
+[node name="HitboxCollision" type="CollisionShape2D" parent="Hitbox" unique_id=1352727639]
+shape = SubResource("CapsuleShape2D_3agqq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1306087403]
+libraries/ = SubResource("AnimationLibrary_uyp1i")
+
+[node name="BeehaveTree" type="Node" parent="." unique_id=245089707 node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("8_w8lp7")
+actor_node_path = NodePath("..")
+blackboard = NodePath("@Node@18547")
+actor = NodePath("..")
+metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
+
+[node name="ChooseState" type="Node" parent="BeehaveTree" unique_id=1213484915]
+script = ExtResource("9_ehc0m")
+metadata/_custom_type_script = "uid://8hn4kne15ac5"
+
+[node name="DeadSequence" type="Node" parent="BeehaveTree/ChooseState" unique_id=486508513]
+script = ExtResource("10_101tt")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="isDeadCondition" type="Node" parent="BeehaveTree/ChooseState/DeadSequence" unique_id=176596974]
+script = ExtResource("11_ya0hg")
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"
+
+[node name="DEAD" type="Node" parent="BeehaveTree/ChooseState/DeadSequence" unique_id=1562265802]
+script = ExtResource("12_uyp1i")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="AttackSequence" type="Node" parent="BeehaveTree/ChooseState" unique_id=1186152028]
+script = ExtResource("10_101tt")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="isEnemyCondition" type="Node" parent="BeehaveTree/ChooseState/AttackSequence" unique_id=308329719]
+script = ExtResource("11_3agqq")
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"
+
+[node name="ATTACK" type="Node" parent="BeehaveTree/ChooseState/AttackSequence" unique_id=1306550420]
+script = ExtResource("12_w6i7s")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="FollowPlayerSequence" type="Node" parent="BeehaveTree/ChooseState" unique_id=132552223]
+script = ExtResource("10_101tt")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="isFollowPlayerCondition" type="Node" parent="BeehaveTree/ChooseState/FollowPlayerSequence" unique_id=100337865]
+script = ExtResource("13_uyp1i")
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"
+
+[node name="FOLLOWPLAYER" type="Node" parent="BeehaveTree/ChooseState/FollowPlayerSequence" unique_id=299166001]
+script = ExtResource("13_kugvc")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="WalkSequence" type="Node" parent="BeehaveTree/ChooseState" unique_id=852489715]
+script = ExtResource("10_101tt")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="isWalkConditions" type="Node" parent="BeehaveTree/ChooseState/WalkSequence" unique_id=989152422]
+script = ExtResource("15_3agqq")
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"
+
+[node name="WALK" type="Node" parent="BeehaveTree/ChooseState/WalkSequence" unique_id=1826836008]
+script = ExtResource("14_jue1s")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="IDLE" type="Node" parent="BeehaveTree/ChooseState" unique_id=1603309552]
+script = ExtResource("17_3agqq")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"

@@ -1,13 +1,12 @@
 [gd_scene format=3 uid="uid://p0my538ebm6r"]
 
 [ext_resource type="Script" uid="uid://b87wqprwi3keb" path="res://Main_Scene/main_scene.gd" id="1_gyfs4"]
-[ext_resource type="AudioStream" uid="uid://csmfshmwjgtcy" path="res://Assets/Soundtracks/BoneCharm_soundtrack.mp3" id="2_bpy27"]
 
 [node name="Main Scene" type="Node2D" unique_id=1931658074 groups=["Main_Scene"]]
 y_sort_enabled = true
 script = ExtResource("1_gyfs4")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=345879209]
-stream = ExtResource("2_bpy27")
 volume_db = -9.123
-autoplay = true
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
