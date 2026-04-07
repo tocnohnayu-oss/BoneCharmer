@@ -180,6 +180,7 @@ texture = ExtResource("2_8a5b6")
 volume_db = -8.965
 
 [node name="UnitAnimatedSprite" type="AnimatedSprite2D" parent="." unique_id=1137653636]
+y_sort_enabled = true
 animation = &""
 
 [node name="UnitCollision" type="CollisionShape2D" parent="." unique_id=222583247]
@@ -273,3 +274,5 @@ metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 [node name="IDLE" type="Node" parent="BeehaveTree/ChooseState" unique_id=1603309552]
 script = ExtResource("17_3agqq")
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[connection signal="timeout" from="HPBar/HPBarTimer" to="." method="_on_hp_bar_timer_timeout"]

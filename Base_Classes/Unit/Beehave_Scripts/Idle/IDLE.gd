@@ -1,11 +1,10 @@
 extends ActionLeaf
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func tick(actor: Node, blackboard: Blackboard) -> int:
+	var idle_timer: Timer = actor.idle_timer
+	actor.sprite.play("idle")
+	if idle_timer.time_left <= 0:
+		blackboard.set_value("is_ready_to_move", true)
+		idle_timer.start()
+	return SUCCESS

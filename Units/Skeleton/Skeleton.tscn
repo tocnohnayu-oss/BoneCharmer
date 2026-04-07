@@ -157,7 +157,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -178,17 +178,16 @@ animations = [{
 }]
 
 [node name="Unit" unique_id=672684683 groups=["Skeleton"] instance=ExtResource("1_f18au")]
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.575, 0.575)
 collision_mask = 7
 script = ExtResource("2_1orvo")
 
-[node name="UnitAudioStreamPlayer2" type="AudioStreamPlayer2D" parent="." index="3" unique_id=1263155859]
-volume_db = -8.965
-
-[node name="UnitAnimatedSprite" parent="." index="4" unique_id=1137653636]
+[node name="UnitAnimatedSprite" parent="." index="3" unique_id=1137653636]
 sprite_frames = SubResource("SpriteFrames_f18au")
 animation = &"idle"
-autoplay = "idle"
+frame = 2
+frame_progress = 1.0
 
-[node name="BeehaveTree" parent="." index="11" unique_id=245089707 node_paths=PackedStringArray("blackboard")]
-blackboard = NodePath("@Node@30697")
+[node name="BeehaveTree" parent="." index="10" unique_id=245089707 node_paths=PackedStringArray("blackboard")]
+blackboard = NodePath("@Node@18550")
+custom_monitor = true
