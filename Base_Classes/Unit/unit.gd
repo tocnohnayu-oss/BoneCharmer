@@ -10,7 +10,7 @@ extends CharacterBody2D
 @onready var shadow = $Shadow
 @onready var hpbar = $HPBar/HPBar
 @onready var anim_player = $AnimationPlayer
-@onready var hitbox = $Hitbox
+@onready var trigger_zone = $Trigger_zone
 @onready var audio_streamer = $UnitAudioStreamPlayer
 @onready var death_sound: AudioStreamMP3
 @onready var spawn_sound: AudioStreamMP3
@@ -31,11 +31,13 @@ var health = max_health
 var blackboard
 var to_player_min_range = 10.0
 var to_player_max_range = 30.0
+var attack_range = 20.0
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	blackboard = beehave_tree.blackboard
+	blackboard.set_value("is_attacking", false)
 	hpbar.modulate = Color(255, 255, 255, 0.0)
 	update_settings()
 	shadow.visible = true
@@ -66,6 +68,10 @@ func hit(value):
 			triangle_sprite.visible = false
 		sprite.frame = sprite.sprite_frames.get_frame_count(&"death") - 1
 		beehave_tree.enabled = false
+		var parent = get_parent()
+		reparent(get_tree().get_first_node_in_group("Main_Scene"))
+		if type == Type.ENEMY:
+			parent.unit_killed.emit()
 
 
 func die():
@@ -88,10 +94,10 @@ func update_settings():
 	triangle_sprite.animation = &"ally" if type == Type.ALLY else &"enemy"
 	health = max_health
 	triangle_sprite.play()
-	hitbox.set_collision_layer_value(1, type == Type.ALLY)
-	hitbox.set_collision_layer_value(2, type == Type.ENEMY)
-	hitbox.set_collision_mask_value(2, type == Type.ALLY)
-	hitbox.set_collision_mask_value(1, type == Type.ENEMY)
+	trigger_zone.set_collision_layer_value(1, type == Type.ALLY)
+	trigger_zone.set_collision_layer_value(2, type == Type.ENEMY)
+	trigger_zone.set_collision_mask_value(2, type == Type.ALLY)
+	trigger_zone.set_collision_mask_value(1, type == Type.ENEMY)
 
 
 func revive(new_type):
@@ -102,6 +108,7 @@ func revive(new_type):
 	health = max_health
 	blackboard.set_value("is_dead", is_dead)
 	triangle_sprite.animation = &"ally" if type == Type.ALLY else &"enemy"
+	set_collision_mask_value(1, type == Type.ALLY)
 	audio_streamer.stream = spawn_sound
 	audio_streamer.play()
 	sprite.stop()
@@ -112,6 +119,16 @@ func revive(new_type):
 	no_lifes_left = true
 	unit_collision.disabled = false
 	nav_agent.navigation_layers = 1
+
+
+func attack(target):
+	if sprite.animation == &"attack" and sprite.is_playing():
+		return
+	sprite.play(&"attack")
+	await sprite.animation_finished
+	if not is_dead:
+		target.hit(damage)
+	blackboard.set_value("is_attacking", false)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

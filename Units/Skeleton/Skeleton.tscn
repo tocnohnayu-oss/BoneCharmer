@@ -189,5 +189,5 @@ frame = 2
 frame_progress = 1.0
 
 [node name="BeehaveTree" parent="." index="10" unique_id=245089707 node_paths=PackedStringArray("blackboard")]
-blackboard = NodePath("@Node@18550")
+blackboard = NodePath("@Node@55639")
 custom_monitor = true

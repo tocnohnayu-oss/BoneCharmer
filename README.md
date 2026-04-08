@@ -1,6 +1,6 @@
 # 💀 Bonecharmer 
 **Жанр:** Necromancy Army Builder / Pixel-Art Action  
-**Платформы:** Android, Linux (Godot 4)
+**Платформы:** Android, Linux, Windows (Godot 4)
 
 ---
 
@@ -16,21 +16,20 @@
 ---
 
 ## 🎨 Визуал (Work in Progress)
-тут можно вставить гифку или скриншот твоего тайлсета
 ![Main Hero](Assets/Player/MainCharacter-Sheet.png) 
 *Наш главный герой — Bonecharmer*
 
 ---
 
 ## 🛠 Технологический стек
-* **Движок:** Godot 4.x (Compatibility Renderer)
+* **Движок:** Godot 4.6.4 (Compatibility Renderer)
 * **Язык:** GDScript
 * **ОС разработки:** Arch Linux 🐧
-* **Графика:** Pixel-art (16x16 / 32x32)
+* **Графика:** Pixel-art (16x16 / 32x32 / 64x64)
 
 ---
 
 ## 🚀 Как запустить (для разработчиков)
-1. Склонируйте репозиторий: `git clone https://github.com`
-2. Откройте проект в **Godot 4.2+**.
+1. Склонируйте репозиторий: `git clone https://github.com/tocnohnayu-oss/BoneCharmer`
+2. Откройте проект в **Godot 4.6.2+**.
 3. Нажмите **F5** для запуска.

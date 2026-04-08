@@ -93,8 +93,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3agqq"]
-radius = 22.0
-height = 48.0
+radius = 63.0
+height = 126.0
 
 [sub_resource type="Animation" id="Animation_8javn"]
 length = 0.001
@@ -196,17 +196,21 @@ animation = &"ally"
 
 [node name="UnitNavigationAgent" type="NavigationAgent2D" parent="." unique_id=2114521078]
 navigation_layers = 3
+avoidance_enabled = true
+radius = 24.85
+neighbor_distance = 50.0
+debug_enabled = true
 
 [node name="IdleTimer" type="Timer" parent="." unique_id=2041938132]
 process_callback = 0
 wait_time = 2.0
 one_shot = true
 
-[node name="Hitbox" type="Area2D" parent="." unique_id=1592334801]
+[node name="Trigger_zone" type="Area2D" parent="." unique_id=1592334801]
 collision_layer = 0
 collision_mask = 0
 
-[node name="HitboxCollision" type="CollisionShape2D" parent="Hitbox" unique_id=1352727639]
+[node name="HitboxCollision" type="CollisionShape2D" parent="Trigger_zone" unique_id=1352727639]
 shape = SubResource("CapsuleShape2D_3agqq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1306087403]

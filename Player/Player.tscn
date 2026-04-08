@@ -126,7 +126,7 @@ radius = 11.0
 [node name="Player" type="CharacterBody2D" unique_id=1861182355 groups=["Player"]]
 y_sort_enabled = true
 scale = Vector2(0.5, 0.5)
-collision_mask = 7
+collision_mask = 6
 script = ExtResource("1_tok1r")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=327873381]

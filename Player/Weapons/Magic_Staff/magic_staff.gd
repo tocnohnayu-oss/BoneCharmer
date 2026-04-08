@@ -3,6 +3,11 @@ extends Sprite2D
 
 @onready var bullet_scene = preload("res://Player/Weapons/Magic_Staff/Bullet.tscn")
 @export var damage = 10.0
+enum Type {
+	ALLY,
+	ENEMY
+}
+var type = Type.ALLY
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,6 +21,7 @@ func _process(delta: float) -> void:
 
 func create_bullet(direction: Vector2, target_position: Vector2) -> void:
 	var bullet = bullet_scene.instantiate()
+	bullet.type = Type.ALLY
 	bullet.direction = direction
 	bullet.damage = damage
 	bullet.scale = Vector2(0.4, 0.4)
