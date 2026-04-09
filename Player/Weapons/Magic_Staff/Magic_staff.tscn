@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://s0sbglrsf4a0"]
+
+[ext_resource type="PackedScene" uid="uid://bck0ipanithup" path="res://Base_Classes/Weapon/Weapon.tscn" id="1_h2whp"]
+[ext_resource type="Texture2D" uid="uid://draf55nsl7vaq" path="res://Assets/Player/Weapons/MagicStaff/magic_staff.png" id="2_52k10"]
+[ext_resource type="Script" uid="uid://dyciik3hwwej0" path="res://Player/Weapons/Magic_Staff/magic_staff.gd" id="3_uiyuh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0v64"]
+atlas = ExtResource("2_52k10")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b0wn3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0v64")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Magic_staff" unique_id=1944367989 instance=ExtResource("1_h2whp")]
+sprite_frames = SubResource("SpriteFrames_b0wn3")
+script = ExtResource("3_uiyuh")

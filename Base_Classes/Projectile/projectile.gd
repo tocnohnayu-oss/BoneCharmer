@@ -51,5 +51,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 
 func destroy():
+		$CollisionShape2D.disabled = true
 		current_state = State.DESTROY
 		sprite.play("destroy")

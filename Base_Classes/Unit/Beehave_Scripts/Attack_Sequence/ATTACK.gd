@@ -14,6 +14,8 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 		return FAILURE
 	if not focused_enemy:
 		focused_enemy = enemies[0]
+	elif focused_enemy.type == actor.type:
+		return FAILURE
 	elif focused_enemy.is_dead:
 		focused_enemy = enemies[0]
 	if actor.global_position.distance_to(focused_enemy.global_position) <= actor.attack_range:

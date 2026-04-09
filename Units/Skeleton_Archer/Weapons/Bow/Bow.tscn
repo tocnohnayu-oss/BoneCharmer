@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://jd774k2lehhb"]
+
+[ext_resource type="PackedScene" uid="uid://bck0ipanithup" path="res://Base_Classes/Weapon/Weapon.tscn" id="1_sun1p"]
+[ext_resource type="Texture2D" uid="uid://dkrdf6v0g5xy7" path="res://Assets/Units/Skeleton_Archer/Weapons/Bow/bow-Sheet.png" id="2_pj2n7"]
+[ext_resource type="Script" uid="uid://dclc401mptpci" path="res://Units/Skeleton_Archer/Weapons/Bow/bow.gd" id="3_wh8gr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pj2n7"]
+atlas = ExtResource("2_pj2n7")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4e4r0"]
+atlas = ExtResource("2_pj2n7")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hof44"]
+atlas = ExtResource("2_pj2n7")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcm3l"]
+atlas = ExtResource("2_pj2n7")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4fat"]
+atlas = ExtResource("2_pj2n7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4u7ak"]
+atlas = ExtResource("2_pj2n7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qx1l"]
+atlas = ExtResource("2_pj2n7")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwrim"]
+atlas = ExtResource("2_pj2n7")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcyxx"]
+atlas = ExtResource("2_pj2n7")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryvwg"]
+atlas = ExtResource("2_pj2n7")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wh8gr"]
+atlas = ExtResource("2_pj2n7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4e4r0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pj2n7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4e4r0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hof44")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcm3l")
+}],
+"loop": false,
+"name": &"arrow_release",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4fat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4u7ak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qx1l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwrim")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcyxx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ryvwg")
+}],
+"loop": false,
+"name": &"bow_loading",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wh8gr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Bow" unique_id=1944367989 instance=ExtResource("1_sun1p")]
+position = Vector2(0, -2.3841858e-07)
+scale = Vector2(0.625, 0.6510417)
+sprite_frames = SubResource("SpriteFrames_4e4r0")
+animation = &"arrow_release"
+script = ExtResource("3_wh8gr")

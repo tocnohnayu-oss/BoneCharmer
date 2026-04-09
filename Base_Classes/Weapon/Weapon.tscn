@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bck0ipanithup"]
+
+[ext_resource type="Script" uid="uid://0haj0kar601g" path="res://Base_Classes/Weapon/weapon.gd" id="1_w4t0u"]
+
+[node name="Weapon" type="AnimatedSprite2D" unique_id=1944367989]
+autoplay = "default"
+script = ExtResource("1_w4t0u")

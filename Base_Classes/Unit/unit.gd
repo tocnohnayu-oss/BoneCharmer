@@ -126,6 +126,8 @@ func attack(target):
 		return
 	sprite.play(&"attack")
 	await sprite.animation_finished
+	audio_streamer.stream = attack_sound
+	audio_streamer.play()
 	if not is_dead:
 		target.hit(damage)
 	blackboard.set_value("is_attacking", false)

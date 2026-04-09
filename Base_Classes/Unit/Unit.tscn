@@ -199,7 +199,6 @@ navigation_layers = 3
 avoidance_enabled = true
 radius = 24.85
 neighbor_distance = 50.0
-debug_enabled = true
 
 [node name="IdleTimer" type="Timer" parent="." unique_id=2041938132]
 process_callback = 0

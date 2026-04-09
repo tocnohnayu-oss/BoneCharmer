@@ -4,8 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cwhacn8sl0sw6" path="res://Assets/Player/Shadow/Shadow.png" id="2_8g4oa"]
 [ext_resource type="Texture2D" uid="uid://beq7v8aetuqaa" path="res://Assets/Player/animations/MainCharacter-idle-Sheet.png" id="2_ddoul"]
 [ext_resource type="Texture2D" uid="uid://coe8s11l46bc0" path="res://Assets/Player/animations/MainCharacter-walk-Sheet.png" id="3_8g4oa"]
-[ext_resource type="Texture2D" uid="uid://draf55nsl7vaq" path="res://Assets/Player/Weapons/MagicStaff/magic_staff.png" id="4_ddoul"]
-[ext_resource type="Script" uid="uid://dyciik3hwwej0" path="res://Player/Weapons/Magic_Staff/magic_staff.gd" id="6_6ysni"]
+[ext_resource type="PackedScene" uid="uid://s0sbglrsf4a0" path="res://Player/Weapons/Magic_Staff/Magic_staff.tscn" id="7_s1rgi"]
 [ext_resource type="Texture2D" uid="uid://b285yxfx5glow" path="res://Assets/Player/Weapons/Magic_Book/magic_book.png" id="7_vlldt"]
 [ext_resource type="AudioStream" uid="uid://c12h30lkvjx5d" path="res://Assets/Player/Weapons/MagicStaff/Bullet_Sounds/magic_staff_bullet_sound.mp3" id="8_s1rgi"]
 
@@ -155,13 +154,6 @@ limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
-[node name="MagicStaff" type="Sprite2D" parent="." unique_id=1502504179]
-light_mask = 0
-position = Vector2(17, 3.0000007)
-rotation = 0.1605703
-texture = ExtResource("4_ddoul")
-script = ExtResource("6_6ysni")
-
 [node name="MagicBook" type="Sprite2D" parent="." unique_id=960362939]
 visible = false
 position = Vector2(18, 6)
@@ -172,3 +164,7 @@ texture = ExtResource("7_vlldt")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1208126634]
 stream = ExtResource("8_s1rgi")
 volume_db = -10.033
+
+[node name="MagicStaff" parent="." unique_id=1944367989 instance=ExtResource("7_s1rgi")]
+position = Vector2(17, 3)
+rotation = 0.1605703

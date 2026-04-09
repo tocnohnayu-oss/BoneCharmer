@@ -2,6 +2,7 @@ extends Node2D
 
 
 @onready var skeleton_scene = preload("res://Units/Skeleton/Skeleton.tscn")
+@onready var skeleton_archer_scene = preload("res://Units/Skeleton_Archer/Skeleton_archer.tscn")
 @onready var group_scene = preload("res://Group/Group.tscn")
 
 
@@ -16,7 +17,12 @@ func _process(delta: float) -> void:
 
 
 func spawn_skeleton(position, group):
-	var skeleton = skeleton_scene.instantiate()
+	var skeleton_class_random = randf()
+	var skeleton = null
+	if skeleton_class_random >= 0.6:
+		skeleton = skeleton_archer_scene.instantiate()
+	else:
+		skeleton = skeleton_scene.instantiate()
 	skeleton.type = skeleton.Type.ENEMY
 	skeleton.collision_layer = 2
 	group.add_child(skeleton)

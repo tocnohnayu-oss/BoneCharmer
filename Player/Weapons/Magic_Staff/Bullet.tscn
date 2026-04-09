@@ -2,11 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://cvdfp71o55rqe" path="res://Base_Classes/Projectile/Projectile.tscn" id="1_0lvt4"]
 [ext_resource type="Script" uid="uid://p1g7boyyn2pu" path="res://Player/Weapons/Magic_Staff/bullet.gd" id="1_n1sxs"]
+[ext_resource type="SpriteFrames" uid="uid://bu6jouh1ekbid" path="res://Resources/sprite_frames/magic_staff_ball.tres" id="3_n1sxs"]
 
 [node name="Projectile" unique_id=2122621666 instance=ExtResource("1_0lvt4")]
 script = ExtResource("1_n1sxs")
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=1917488764]
-animation = &"destroy"
-
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+sprite_frames = ExtResource("3_n1sxs")
