@@ -28,6 +28,8 @@ func _process(delta: float) -> void:
 func create_bullet(direction: Vector2, target_position: Vector2) -> void:
 	var bullet = bullet_scene.instantiate()
 	bullet.type = type
+	bullet.set_collision_layer_value(1, type == Type.ALLY)
+	bullet.set_collision_layer_value(2, type == Type.ENEMY)
 	bullet.direction = direction
 	bullet.damage = damage
 	bullet.scale = Vector2(0.4, 0.4)

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dypjavppcgmw0"]
+
+[ext_resource type="PackedScene" uid="uid://bck0ipanithup" path="res://Base_Classes/Weapon/Weapon.tscn" id="1_7wxut"]
+[ext_resource type="Texture2D" uid="uid://b285yxfx5glow" path="res://Assets/Player/Weapons/Magic_Book/magic_book.png" id="2_gpida"]
+[ext_resource type="Script" uid="uid://cigm8713tju6f" path="res://Player/Weapons/Magic_Book/magic_book.gd" id="3_waq4y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_waq4y"]
+atlas = ExtResource("2_gpida")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yiwmu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_waq4y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Weapon" unique_id=1944367989 instance=ExtResource("1_7wxut")]
+sprite_frames = SubResource("SpriteFrames_yiwmu")
+script = ExtResource("3_waq4y")

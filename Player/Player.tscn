@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cwhacn8sl0sw6" path="res://Assets/Player/Shadow/Shadow.png" id="2_8g4oa"]
 [ext_resource type="Texture2D" uid="uid://beq7v8aetuqaa" path="res://Assets/Player/animations/MainCharacter-idle-Sheet.png" id="2_ddoul"]
 [ext_resource type="Texture2D" uid="uid://coe8s11l46bc0" path="res://Assets/Player/animations/MainCharacter-walk-Sheet.png" id="3_8g4oa"]
+[ext_resource type="PackedScene" uid="uid://dypjavppcgmw0" path="res://Player/Weapons/Magic_Book/Magic_Book.tscn" id="5_vlldt"]
 [ext_resource type="PackedScene" uid="uid://s0sbglrsf4a0" path="res://Player/Weapons/Magic_Staff/Magic_staff.tscn" id="7_s1rgi"]
-[ext_resource type="Texture2D" uid="uid://b285yxfx5glow" path="res://Assets/Player/Weapons/Magic_Book/magic_book.png" id="7_vlldt"]
 [ext_resource type="AudioStream" uid="uid://bfkij1nnpw2w5" path="res://Assets/Player/Weapons/MagicStaff/Bullet_Sounds/magic_staff_bullet_sound.mp3" id="8_s1rgi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ysni"]
@@ -154,17 +154,16 @@ limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
-[node name="MagicBook" type="Sprite2D" parent="." unique_id=960362939]
+[node name="MagicBook" parent="." unique_id=1944367989 instance=ExtResource("5_vlldt")]
 visible = false
-position = Vector2(18, 6)
-rotation = 0.2443461
-scale = Vector2(0.645, 0.645)
-texture = ExtResource("7_vlldt")
+position = Vector2(18, 4)
+rotation = 0.27213234
+scale = Vector2(0.75, 0.75)
 
 [node name="audio_player" type="AudioStreamPlayer2D" parent="." unique_id=1208126634]
 stream = ExtResource("8_s1rgi")
 volume_db = -10.033
 
-[node name="MagicStaff" parent="." unique_id=1944367989 instance=ExtResource("7_s1rgi")]
+[node name="MagicStaff" parent="." unique_id=232309685 instance=ExtResource("7_s1rgi")]
 position = Vector2(17, 3)
 rotation = 0.1605703

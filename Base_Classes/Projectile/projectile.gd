@@ -19,6 +19,7 @@ enum State {
 	DESTROY
 }
 var current_state = State.FLY
+var is_destroying_by_projectiles = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -41,6 +42,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
+	if body is not Unit and not is_destroying_by_projectiles:
+		return
 	if body.is_in_group("Enemy" if type == Type.ALLY else "Player_Skeleton") and current_state != State.DESTROY:
 		body.hit(damage)
 		destroy()

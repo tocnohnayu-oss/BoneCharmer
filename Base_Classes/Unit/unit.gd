@@ -32,6 +32,8 @@ var blackboard
 var to_player_min_range = 10.0
 var to_player_max_range = 30.0
 var attack_range = 20.0
+var active_weapon = null
+var attack_animations = ["attack"]
 
 
 # Called when the node enters the scene tree for the first time.
@@ -76,6 +78,7 @@ func die():
 		reparent(get_tree().get_first_node_in_group("Main_Scene"))
 		if type == Type.ENEMY:
 			parent.unit_killed.emit()
+		blackboard.set_value("is_attacking", false)
 
 
 func update_hpbar():
@@ -98,6 +101,7 @@ func update_settings():
 	trigger_zone.set_collision_layer_value(2, type == Type.ENEMY)
 	trigger_zone.set_collision_mask_value(2, type == Type.ALLY)
 	trigger_zone.set_collision_mask_value(1, type == Type.ENEMY)
+	blackboard.set_value("is_attacking", false)
 
 
 func revive(new_type):
@@ -130,13 +134,21 @@ func attack(target):
 	audio_streamer.play()
 	if not is_dead:
 		target.hit(damage)
-	blackboard.set_value("is_attacking", false)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if is_dead:
+		return
+	if velocity.x:
+		get_flipped_h(velocity.x < 0)
 
 
 func _on_hp_bar_timer_timeout() -> void:
 	anim_player.play("hpbar_disappear")
+
+
+func get_flipped_h(state: bool):
+	sprite.flip_h = state
+	if active_weapon:
+		active_weapon.flip_h = state

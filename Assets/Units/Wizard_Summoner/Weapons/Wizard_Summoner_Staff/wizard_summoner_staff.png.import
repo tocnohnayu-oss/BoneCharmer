@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8fvp2u0xxl0h"
-path="res://.godot/imported/summoning_portal-Sheet.png-0ed00d215970c58dd191f8dc906cde6c.ctex"
+uid="uid://b6xf742msh4aq"
+path="res://.godot/imported/wizard_summoner_staff.png-44900856d092f42609e03d6c9436d309.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player/Weapons/Magic_Book/summoning_portal/summoning_portal-Sheet.png"
-dest_files=["res://.godot/imported/summoning_portal-Sheet.png-0ed00d215970c58dd191f8dc906cde6c.ctex"]
+source_file="res://Assets/Units/Wizard_Summoner/Weapons/Wizard_Summoner_Staff/wizard_summoner_staff.png"
+dest_files=["res://.godot/imported/wizard_summoner_staff.png-44900856d092f42609e03d6c9436d309.ctex"]
 
 [params]
 

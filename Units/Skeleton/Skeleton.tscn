@@ -182,6 +182,9 @@ scale = Vector2(0.575, 0.575)
 collision_mask = 7
 script = ExtResource("2_1orvo")
 
+[node name="UnitAudioStreamPlayer" parent="." index="2" unique_id=1393284168]
+volume_db = -5.0
+
 [node name="UnitAnimatedSprite" parent="." index="3" unique_id=1137653636]
 sprite_frames = SubResource("SpriteFrames_f18au")
 animation = &"idle"
@@ -189,5 +192,5 @@ frame = 2
 frame_progress = 1.0
 
 [node name="BeehaveTree" parent="." index="10" unique_id=245089707 node_paths=PackedStringArray("blackboard")]
-blackboard = NodePath("@Node@55639")
+blackboard = NodePath("@Node@32776")
 custom_monitor = true

@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://c3crl3tusx6qv" path="res://Assets/Units/Skeleton/animations/skeleton-idle-Sheet.png" id="4_kn62r"]
 [ext_resource type="Texture2D" uid="uid://bs2ad57qnbnlb" path="res://Assets/Units/Skeleton/animations/skeleton-walk-Sheet.png" id="5_3tdii"]
 [ext_resource type="PackedScene" uid="uid://jd774k2lehhb" path="res://Units/Skeleton_Archer/Weapons/Bow/Bow.tscn" id="6_myuqp"]
-[ext_resource type="Script" uid="uid://dfm38xu23ssxo" path="res://Units/Skeleton_Archer/ATTACK/Archer_ATTACK.gd" id="8_3tdii"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q6o2e"]
 atlas = ExtResource("2_t8h2k")
@@ -204,17 +203,15 @@ collision_mask = 7
 script = ExtResource("2_kn62r")
 
 [node name="UnitAudioStreamPlayer" parent="." index="2" unique_id=1393284168]
-volume_db = 11.04
+volume_db = -5.0
 
 [node name="UnitAnimatedSprite" parent="." index="3" unique_id=1137653636]
 sprite_frames = SubResource("SpriteFrames_8oq7f")
-animation = &"walk"
+animation = &"arrow_release"
 
 [node name="Bow" parent="." index="4" unique_id=1944367989 instance=ExtResource("6_myuqp")]
 position = Vector2(1.395, 3.13)
+animation = &"bow_loading"
 
 [node name="BeehaveTree" parent="." index="11" unique_id=245089707 node_paths=PackedStringArray("blackboard")]
-blackboard = NodePath("@Node@31557")
-
-[node name="ATTACK" parent="BeehaveTree/ChooseState/AttackSequence" parent_id_path=PackedInt32Array(1186152028) index="1" unique_id=1306550420]
-script = ExtResource("8_3tdii")
+blackboard = NodePath("@Node@34973")
