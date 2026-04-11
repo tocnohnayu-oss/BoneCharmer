@@ -1,0 +1,164 @@
+[gd_scene format=3 uid="uid://b30qvvgfv4v4r"]
+
+[ext_resource type="Script" uid="uid://7umwoxw30p58" path="res://UI/Main_Menu/main_menu.gd" id="1_otcqi"]
+[ext_resource type="Texture2D" uid="uid://33h0qn1gvafw" path="res://Assets/UIAssets/Main_Menu/v002_alpha/Background/main_menu_background_v002alpha.png" id="1_skkl5"]
+[ext_resource type="Texture2D" uid="uid://c56v4lkuascoo" path="res://Assets/UIAssets/Main_Menu/v002_alpha/Buttons/start_button.png" id="2_otcqi"]
+[ext_resource type="Texture2D" uid="uid://dl8gowm0vch8d" path="res://Assets/UIAssets/Main_Menu/v002_alpha/Buttons/settings_button.png" id="4_wwobs"]
+[ext_resource type="Texture2D" uid="uid://jmnfojkk5op7" path="res://Assets/UIAssets/Main_Menu/v002_alpha/Buttons/quit_button.png" id="5_mk3wf"]
+[ext_resource type="Texture2D" uid="uid://cdbk6tffko5ti" path="res://Assets/UIAssets/Main_Menu/v002_alpha/Select_triangle/select_triangle-Sheet.png" id="5_skkl5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otcqi"]
+atlas = ExtResource("5_skkl5")
+region = Rect2(0, 0, 28, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjo77"]
+atlas = ExtResource("5_skkl5")
+region = Rect2(28, 0, 28, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwobs"]
+atlas = ExtResource("5_skkl5")
+region = Rect2(56, 0, 28, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mk3wf"]
+atlas = ExtResource("5_skkl5")
+region = Rect2(84, 0, 28, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4swvb"]
+atlas = ExtResource("5_skkl5")
+region = Rect2(112, 0, 28, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ye3hp"]
+atlas = ExtResource("5_skkl5")
+region = Rect2(140, 0, 28, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4r3vv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otcqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjo77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwobs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mk3wf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4swvb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ye3hp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="MainMenu" type="Control" unique_id=591494227]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_otcqi")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2083563904]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_skkl5")
+expand_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Buttons" type="VBoxContainer" parent="." unique_id=1883699679]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -319.0
+offset_top = -165.0
+offset_right = 481.11
+offset_bottom = 292.33997
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Start_Button" type="TextureButton" parent="Buttons" unique_id=253790958]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("2_otcqi")
+stretch_mode = 5
+
+[node name="RightSelectTriangle" type="AnimatedSprite2D" parent="Buttons/Start_Button" unique_id=1178960357]
+position = Vector2(602, 89)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_4r3vv")
+autoplay = "default"
+frame_progress = 0.0764805
+
+[node name="LeftSelectTriangle" type="AnimatedSprite2D" parent="Buttons/Start_Button" unique_id=856232626]
+position = Vector2(211.99998, 90)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_4r3vv")
+autoplay = "default"
+frame_progress = 0.0038041738
+flip_h = true
+
+[node name="Settings_Button" type="TextureButton" parent="Buttons" unique_id=1507865859]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("4_wwobs")
+stretch_mode = 5
+
+[node name="RightSelectTriangle" type="AnimatedSprite2D" parent="Buttons/Settings_Button" unique_id=1335901020]
+visible = false
+position = Vector2(709, 76.00001)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_4r3vv")
+autoplay = "default"
+frame_progress = 0.6396175
+
+[node name="LeftSelectTriangle" type="AnimatedSprite2D" parent="Buttons/Settings_Button" unique_id=1655745988]
+visible = false
+position = Vector2(68.99999, 81.00001)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_4r3vv")
+autoplay = "default"
+frame_progress = 0.65931636
+flip_h = true
+
+[node name="Quit_Button" type="TextureButton" parent="Buttons" unique_id=390183924]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("5_mk3wf")
+stretch_mode = 5
+
+[node name="RightSelectTriangle" type="AnimatedSprite2D" parent="Buttons/Quit_Button" unique_id=1672140270]
+visible = false
+position = Vector2(611, 77.00001)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_4r3vv")
+autoplay = "default"
+frame_progress = 0.7256247
+
+[node name="LeftSelectTriangle" type="AnimatedSprite2D" parent="Buttons/Quit_Button" unique_id=1652253154]
+visible = false
+position = Vector2(193, 82.000015)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_4r3vv")
+autoplay = "default"
+frame_progress = 0.11936485
+flip_h = true

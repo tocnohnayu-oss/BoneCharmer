@@ -53,6 +53,10 @@ func hit(value):
 	health = max(0, health - value)
 	update_hpbar()
 	if health == 0:
+		die()
+
+
+func die():
 		for group in ["Enemy", "Player_Skeleton"]:
 			remove_from_group(group)
 		beehave_tree.enabled = false
@@ -72,10 +76,6 @@ func hit(value):
 		reparent(get_tree().get_first_node_in_group("Main_Scene"))
 		if type == Type.ENEMY:
 			parent.unit_killed.emit()
-
-
-func die():
-	is_dead = true
 
 
 func update_hpbar():

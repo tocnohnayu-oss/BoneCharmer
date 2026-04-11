@@ -14,9 +14,14 @@ var current_state = State.IDLE
 @onready var shadow = $Shadow
 @onready var magic_staff = $MagicStaff
 @onready var skeleton_scene = preload("res://Units/Skeleton/Skeleton.tscn")
+@onready var audio_player = $audio_player
 @export var summon_area = 50.0
+var is_able_to_attack = true
+var active_weapon
 
 func _ready() -> void:
+	current_state = State.IDLE
+	update_state()
 	shadow.visible = true
 	change_weapon($MagicStaff)
 
@@ -79,6 +84,9 @@ func walk() -> void:
 
 
 func attack() -> void:
+	if audio_player.playing and audio_player.get_playback_position() <= active_weapon.cooldown:
+		current_state = State.IDLE
+		return
 	var target = get_global_mouse_position()
 	var attack_direction = target - global_position
 	attack_direction = attack_direction.normalized()
@@ -86,7 +94,8 @@ func attack() -> void:
 	get_tree().call_group("Player_Skeleton", "follow_player")
 	current_state = State.IDLE
 	change_weapon($MagicStaff)
-	$AudioStreamPlayer2D.play(0)
+	is_able_to_attack = false
+	audio_player.play()
 
 
 func hit() -> void:
@@ -113,7 +122,7 @@ func revive_skeletons_in_area():
 			skeleton.revive(skeleton.Type.ALLY)
 	change_weapon($MagicBook)
 
-
 func change_weapon(new_weapon):
 	for weapon in weapons:
-			weapon.visible = weapon == new_weapon
+			weapon.visible = weapon == new_weapon 
+	active_weapon = new_weapon if new_weapon is Weapon else active_weapon

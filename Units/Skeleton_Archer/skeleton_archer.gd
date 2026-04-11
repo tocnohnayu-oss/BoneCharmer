@@ -16,10 +16,6 @@ func update_settings():
 	super.update_settings()
 	bow.type = type
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-
-
 func attack(target):
 	bow.play("bow_loading")
 	sprite.play("bow_loading")
@@ -27,6 +23,7 @@ func attack(target):
 	var arrow_direction = global_position.direction_to(target.global_position)
 	audio_streamer.stream = attack_sound
 	audio_streamer.play()
+	await audio_streamer.finished
 	bow.create_bullet(arrow_direction, target.global_position)
 	audio_streamer.stream = attack_sound2
 	audio_streamer.play()

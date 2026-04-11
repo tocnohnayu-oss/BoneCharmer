@@ -24,12 +24,13 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 		return RUNNING
 		
 	else:
+		sprite.play("walk")
 		nav_agent.target_position = focused_enemy.global_position
 		var direction = actor.global_position.direction_to(nav_agent.get_next_path_position())
 		actor.velocity = SPEED * direction
 		if direction:
-			sprite.play("walk")
 			sprite.flip_h = direction.x < 0
 		actor.move_and_slide()
 		return RUNNING
+	blackboard.set_value("is_attacking", false)
 	return SUCCESS

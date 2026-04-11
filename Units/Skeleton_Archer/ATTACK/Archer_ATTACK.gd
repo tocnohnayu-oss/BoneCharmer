@@ -10,7 +10,7 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	var nav_agent: NavigationAgent2D = actor.nav_agent
 	var SPEED = actor.SPEED
 	enemies.sort_custom(func (a, b): return actor.global_position.distance_to(a.global_position) > actor.global_position.distance_to(b.global_position))
-	if not enemies:
+	if not enemies or blackboard.get_value("is_attacking"):
 		return FAILURE
 	if not focused_enemy:
 		focused_enemy = enemies[0]

@@ -4,9 +4,14 @@
 
 [node name="Main Scene" type="Node2D" unique_id=1931658074 groups=["Main_Scene"]]
 y_sort_enabled = true
+texture_filter = 1
 script = ExtResource("1_gyfs4")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=345879209]
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=345879209]
 volume_db = -9.123
 
-[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+[node name="UI_Layer" type="CanvasLayer" parent="." unique_id=1500961897]
+
+[node name="SoundEffectsPlayer" type="AudioStreamPlayer" parent="." unique_id=1451136875]
+
+[connection signal="finished" from="MusicPlayer" to="." method="_on_audio_stream_player_finished"]

@@ -7,7 +7,6 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	var filtered_units = units.filter(func (a): return a.type == a.Type.ENEMY if actor.type == actor.Type.ALLY else a.type == a.Type.ALLY)
 	if not filtered_units or blackboard.get_value("is_attacking"):
 		return FAILURE
-	blackboard.set_value("is_ready_to_walk", false)
 	var nav_agent: NavigationAgent2D = actor.nav_agent
 	nav_agent.target_position = actor.global_position
 	return SUCCESS

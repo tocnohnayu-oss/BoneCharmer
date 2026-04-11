@@ -10,10 +10,14 @@ enum Type {
 }
 var type = Type.ALLY
 var ability_function
+var cooldown = 0.5
+var debug_cooldown = 0.5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	ability_function = create_bullet
+	if OS.is_debug_build():
+		cooldown = debug_cooldown
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

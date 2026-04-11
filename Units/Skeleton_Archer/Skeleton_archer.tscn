@@ -200,7 +200,11 @@ animations = [{
 
 [node name="Unit" unique_id=672684683 groups=["Skeleton"] instance=ExtResource("1_7cgo0")]
 scale = Vector2(0.575, 0.575)
+collision_mask = 7
 script = ExtResource("2_kn62r")
+
+[node name="UnitAudioStreamPlayer" parent="." index="2" unique_id=1393284168]
+volume_db = 11.04
 
 [node name="UnitAnimatedSprite" parent="." index="3" unique_id=1137653636]
 sprite_frames = SubResource("SpriteFrames_8oq7f")
@@ -210,7 +214,7 @@ animation = &"walk"
 position = Vector2(1.395, 3.13)
 
 [node name="BeehaveTree" parent="." index="11" unique_id=245089707 node_paths=PackedStringArray("blackboard")]
-blackboard = NodePath("@Node@31885")
+blackboard = NodePath("@Node@31557")
 
 [node name="ATTACK" parent="BeehaveTree/ChooseState/AttackSequence" parent_id_path=PackedInt32Array(1186152028) index="1" unique_id=1306550420]
 script = ExtResource("8_3tdii")

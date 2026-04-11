@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://tq8nqhvc0qrd"]
 
 [ext_resource type="PackedScene" uid="uid://cvdfp71o55rqe" path="res://Base_Classes/Projectile/Projectile.tscn" id="1_2oabw"]
+[ext_resource type="Script" uid="uid://4dxkbu0n06e8" path="res://Units/Skeleton_Archer/Weapons/Bow/Arrow/arrow.gd" id="2_57007"]
 [ext_resource type="Texture2D" uid="uid://cvwu5hquqfulg" path="res://Assets/Units/Skeleton_Archer/Weapons/Bow/Arrow/arrow-Sheet.png" id="2_ae6qg"]
 [ext_resource type="Texture2D" uid="uid://bdow4vqii1wyn" path="res://Assets/Units/Skeleton_Archer/Weapons/Bow/Arrow/arrow-destroy-Sheet.png" id="3_ae6qg"]
 
@@ -93,7 +94,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"destroy",
-"speed": 16.0
+"speed": 25.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -114,6 +115,7 @@ animations = [{
 }]
 
 [node name="Arrow" unique_id=2122621666 instance=ExtResource("1_2oabw")]
+script = ExtResource("2_57007")
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=1917488764]
 position = Vector2(2.3841858e-07, 0)
