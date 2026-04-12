@@ -5,3 +5,5 @@
 [node name="Weapon" type="AnimatedSprite2D" unique_id=1944367989]
 autoplay = "default"
 script = ExtResource("1_w4t0u")
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=2062684991]

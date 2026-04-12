@@ -47,6 +47,7 @@ func _ready() -> void:
 	shadow.scale = Vector2(0.6, 0.3)
 	shadow.position = Vector2(0, 12)
 	blackboard.set_value("is_ready_to_walk", false)
+	blackboard.set_value("is_ready_to_attack", true)
 
 
 func hit(value):
@@ -71,6 +72,7 @@ func die():
 			audio_streamer.play()
 		await sprite.animation_finished
 		if no_lifes_left:
+			to_destroy()
 			triangle_sprite.visible = false
 		sprite.frame = sprite.sprite_frames.get_frame_count(&"death") - 1
 		beehave_tree.enabled = false
@@ -132,13 +134,14 @@ func attack(target):
 	await sprite.animation_finished
 	audio_streamer.stream = attack_sound
 	audio_streamer.play()
-	if not is_dead:
+	if not is_dead and is_instance_valid(target):
 		target.hit(damage)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if is_dead:
+		blackboard.set_value("is_dead", is_dead)
 		return
 	if velocity.x:
 		get_flipped_h(velocity.x < 0)
@@ -152,3 +155,7 @@ func get_flipped_h(state: bool):
 	sprite.flip_h = state
 	if active_weapon:
 		active_weapon.flip_h = state
+
+
+func to_destroy():
+	pass

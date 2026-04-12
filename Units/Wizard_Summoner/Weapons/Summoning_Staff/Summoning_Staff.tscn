@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://jbst10h032y7"]
+
+[ext_resource type="PackedScene" uid="uid://bck0ipanithup" path="res://Base_Classes/Weapon/Weapon.tscn" id="1_scb6g"]
+[ext_resource type="Texture2D" uid="uid://b6xf742msh4aq" path="res://Assets/Units/Wizard_Summoner/Weapons/Wizard_Summoner_Staff/wizard_summoner_staff.png" id="2_a5bh3"]
+[ext_resource type="Script" uid="uid://dxuoe2bkojle5" path="res://Units/Wizard_Summoner/Weapons/Summoning_Staff/summoning_staff.gd" id="3_px8n0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nt5v"]
+atlas = ExtResource("2_a5bh3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_px8n0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4nt5v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SummoningStaff" unique_id=1944367989 instance=ExtResource("1_scb6g")]
+sprite_frames = SubResource("SpriteFrames_px8n0")
+script = ExtResource("3_px8n0")

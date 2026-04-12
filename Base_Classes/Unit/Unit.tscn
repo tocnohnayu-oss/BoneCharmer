@@ -22,7 +22,8 @@
 [ext_resource type="Script" uid="uid://csr22gb41ijgt" path="res://Base_Classes/Unit/Beehave_Scripts/Idle/IDLE.gd" id="17_3agqq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ya0hg"]
-height = 22.0
+radius = 9.0
+height = 20.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wqtvh"]
 atlas = ExtResource("6_101tt")

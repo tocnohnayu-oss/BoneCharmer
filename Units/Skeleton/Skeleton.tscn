@@ -188,9 +188,10 @@ volume_db = -5.0
 [node name="UnitAnimatedSprite" parent="." index="3" unique_id=1137653636]
 sprite_frames = SubResource("SpriteFrames_f18au")
 animation = &"idle"
+autoplay = "idle"
 frame = 2
 frame_progress = 1.0
 
 [node name="BeehaveTree" parent="." index="10" unique_id=245089707 node_paths=PackedStringArray("blackboard")]
-blackboard = NodePath("@Node@32776")
+blackboard = NodePath("@Node@154457")
 custom_monitor = true

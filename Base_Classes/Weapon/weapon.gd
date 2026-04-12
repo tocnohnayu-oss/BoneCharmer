@@ -3,6 +3,7 @@ extends AnimatedSprite2D
 
 
 @onready var bullet_scene = preload("res://Player/Weapons/Magic_Staff/Bullet.tscn")
+@onready var audio_player = $AudioPlayer
 @export var damage = 10.0
 enum Type {
 	ALLY,

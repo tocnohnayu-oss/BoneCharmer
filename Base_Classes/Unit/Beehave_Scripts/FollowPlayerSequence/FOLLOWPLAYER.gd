@@ -9,9 +9,6 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	nav_agent.target_position = player_position
 	var next_path_position = nav_agent.get_next_path_position()
 	var direction = actor.global_position.direction_to(next_path_position)
-	if direction:
-		sprite.play("walk")
-		sprite.flip_h = direction.x < 0
 	actor.velocity = direction * SPEED
 	actor.move_and_slide()
 	return SUCCESS

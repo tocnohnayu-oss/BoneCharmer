@@ -6,4 +6,8 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	if not player or actor.type == actor.Type.ENEMY:
 		return FAILURE
 	var dist_to_player = actor.global_position.distance_to(player.global_position)
-	return SUCCESS if actor.to_player_max_range <= dist_to_player and dist_to_player >= actor.to_player_min_range else FAILURE
+	if actor.to_player_max_range <= dist_to_player and dist_to_player >= actor.to_player_min_range:
+		return SUCCESS
+	else:
+		actor.velocity = Vector2.ZERO
+		return FAILURE

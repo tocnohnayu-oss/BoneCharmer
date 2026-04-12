@@ -19,12 +19,12 @@ func update_settings():
 	bow.type = type
 
 func attack(target):
+	var arrow_direction = global_position.direction_to(target.global_position)
 	bow.play("bow_loading")
 	sprite.play("bow_loading")
 	audio_streamer.stream = attack_sound
 	audio_streamer.play()
 	await bow.animation_finished
-	var arrow_direction = global_position.direction_to(target.global_position)
 	bow.create_bullet(arrow_direction, target.global_position)
 	audio_streamer.stream = attack_sound2
 	audio_streamer.play()

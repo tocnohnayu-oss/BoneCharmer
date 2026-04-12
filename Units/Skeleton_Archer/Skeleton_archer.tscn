@@ -207,11 +207,12 @@ volume_db = -5.0
 
 [node name="UnitAnimatedSprite" parent="." index="3" unique_id=1137653636]
 sprite_frames = SubResource("SpriteFrames_8oq7f")
-animation = &"arrow_release"
+animation = &"idle"
+autoplay = "idle"
 
 [node name="Bow" parent="." index="4" unique_id=1944367989 instance=ExtResource("6_myuqp")]
 position = Vector2(1.395, 3.13)
 animation = &"bow_loading"
 
 [node name="BeehaveTree" parent="." index="11" unique_id=245089707 node_paths=PackedStringArray("blackboard")]
-blackboard = NodePath("@Node@34973")
+blackboard = NodePath("@Node@152832")
