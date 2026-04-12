@@ -13,7 +13,6 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	if direction:
 		if sprite.animation != "walk":
 			sprite.play("walk")
-		sprite.flip_h = direction.x < 0
 	actor.velocity = direction * SPEED
 	actor.move_and_slide()
 	if nav_agent.is_navigation_finished():

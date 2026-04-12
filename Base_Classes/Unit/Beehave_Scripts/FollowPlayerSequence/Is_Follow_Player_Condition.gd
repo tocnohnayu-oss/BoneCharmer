@@ -2,7 +2,7 @@ extends ConditionLeaf
 
 
 func tick(actor: Node, blackboard: Blackboard) -> int:
-	var player = get_tree().get_first_node_in_group("Player")
+	var player = blackboard.get_value("unit_owner")
 	if not player or actor.type == actor.Type.ENEMY:
 		return FAILURE
 	var dist_to_player = actor.global_position.distance_to(player.global_position)

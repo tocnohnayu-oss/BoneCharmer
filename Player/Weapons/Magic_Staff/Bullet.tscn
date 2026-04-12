@@ -9,3 +9,4 @@ script = ExtResource("1_n1sxs")
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=1917488764]
 sprite_frames = ExtResource("3_n1sxs")
+animation = &"destroy"

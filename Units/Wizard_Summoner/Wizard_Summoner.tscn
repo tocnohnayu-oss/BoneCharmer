@@ -284,4 +284,6 @@ process_callback = 0
 wait_time = 5.0
 one_shot = true
 
+[node name="Minions" type="Node" parent="." index="13" unique_id=99198701]
+
 [connection signal="timeout" from="SummonTimer" to="." method="_on_summon_timer_timeout"]

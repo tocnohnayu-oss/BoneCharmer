@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://j7smyi4xg153" path="res://Base_Classes/Projectile/projectile.gd" id="1_q0ipr"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_qtm7n"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_wphne"]
 radius = 8.0
 
@@ -10,8 +12,7 @@ collision_mask = 3
 script = ExtResource("1_q0ipr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1917488764]
-animation = &""
-autoplay = "move"
+sprite_frames = SubResource("SpriteFrames_qtm7n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1834941075]
 shape = SubResource("CircleShape2D_wphne")

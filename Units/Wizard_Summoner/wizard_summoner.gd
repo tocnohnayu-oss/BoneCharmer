@@ -25,15 +25,22 @@ func update_settings():
 	summoning_staff.type = type
 
 
+func die():
+	super.die()
+	summoning_staff.update_minions()
+
 func attack(target):
+	if is_dead or not is_instance_valid(target):
+		return
+	var target_position = target.global_position
 	summon_timer.start()
 	blackboard.set_value("is_ready_to_attack", false)
 	sprite.play("attack_start")
 	audio_streamer.stream = attack_sound
 	audio_streamer.play()
 	await sprite.animation_finished
-	var minion_direction = global_position.direction_to(target.global_position)
-	active_weapon.use_ability(minion_direction, target.global_position)
+	var minion_direction = global_position.direction_to(target_position)
+	active_weapon.use_ability(minion_direction, target_position)
 	sprite.play("attack_end")
 	audio_streamer.stream = attack_sound2
 	audio_streamer.play()

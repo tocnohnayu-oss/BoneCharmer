@@ -121,5 +121,4 @@ script = ExtResource("2_57007")
 position = Vector2(2.3841858e-07, 0)
 scale = Vector2(0.68750006, 0.68750006)
 sprite_frames = SubResource("SpriteFrames_kc2g4")
-animation = &"default"
 autoplay = "release"

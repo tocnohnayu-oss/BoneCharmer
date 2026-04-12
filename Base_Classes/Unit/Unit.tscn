@@ -21,6 +21,8 @@
 [ext_resource type="Script" uid="uid://cgoxqpsbuqid4" path="res://Base_Classes/Unit/Beehave_Scripts/Attack_Sequence/FOLLOW.gd" id="15_o3sae"]
 [ext_resource type="Script" uid="uid://csr22gb41ijgt" path="res://Base_Classes/Unit/Beehave_Scripts/Idle/IDLE.gd" id="17_3agqq"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_o3sae"]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ya0hg"]
 radius = 9.0
 height = 20.0
@@ -183,7 +185,7 @@ volume_db = -8.965
 
 [node name="UnitAnimatedSprite" type="AnimatedSprite2D" parent="." unique_id=1137653636]
 y_sort_enabled = true
-animation = &""
+sprite_frames = SubResource("SpriteFrames_o3sae")
 
 [node name="UnitCollision" type="CollisionShape2D" parent="." unique_id=222583247]
 position = Vector2(1, 3)
@@ -195,6 +197,7 @@ position = Vector2(-1, -20)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_jue1s")
 animation = &"ally"
+autoplay = "ally"
 
 [node name="UnitNavigationAgent" type="NavigationAgent2D" parent="." unique_id=2114521078]
 navigation_layers = 3

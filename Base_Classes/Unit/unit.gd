@@ -34,6 +34,7 @@ var to_player_max_range = 30.0
 var attack_range = 20.0
 var active_weapon = null
 var attack_animations = ["attack"]
+var unit_owner = null
 
 
 # Called when the node enters the scene tree for the first time.
@@ -48,6 +49,7 @@ func _ready() -> void:
 	shadow.position = Vector2(0, 12)
 	blackboard.set_value("is_ready_to_walk", false)
 	blackboard.set_value("is_ready_to_attack", true)
+	blackboard.set_value("unit_owner", unit_owner)
 
 
 func hit(value):
@@ -63,7 +65,7 @@ func die():
 		for group in ["Enemy", "Player_Skeleton"]:
 			remove_from_group(group)
 		beehave_tree.enabled = false
-		unit_collision.disabled = true
+		unit_collision.set_deferred("disabled", true)
 		is_dead = true
 		blackboard.set_value("is_dead", is_dead)
 		if sprite.animation != "death":
@@ -78,7 +80,7 @@ func die():
 		beehave_tree.enabled = false
 		var parent = get_parent()
 		reparent(get_tree().get_first_node_in_group("Main_Scene"))
-		if type == Type.ENEMY:
+		if type == Type.ENEMY and parent is Unit_group:
 			parent.unit_killed.emit()
 		blackboard.set_value("is_attacking", false)
 
@@ -97,6 +99,8 @@ func update_settings():
 	set_collision_layer_value(1, type == Type.ALLY)
 	set_collision_layer_value(2, type == Type.ENEMY)
 	triangle_sprite.animation = &"ally" if type == Type.ALLY else &"enemy"
+	if active_weapon:
+		active_weapon.type = type
 	health = max_health
 	triangle_sprite.play()
 	trigger_zone.set_collision_layer_value(1, type == Type.ALLY)
@@ -104,12 +108,16 @@ func update_settings():
 	trigger_zone.set_collision_mask_value(2, type == Type.ALLY)
 	trigger_zone.set_collision_mask_value(1, type == Type.ENEMY)
 	blackboard.set_value("is_attacking", false)
+	blackboard.set_value("unit_owner", unit_owner)
+	blackboard.set_value("is_ready_to_walk", false)
+	blackboard.set_value("is_ready_to_attack", true)
 
 
 func revive(new_type):
 	if no_lifes_left:
 		return
 	type = new_type
+	unit_owner = get_tree().get_first_node_in_group("Player")
 	is_dead = false
 	health = max_health
 	blackboard.set_value("is_dead", is_dead)
@@ -139,9 +147,8 @@ func attack(target):
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_dead:
-		blackboard.set_value("is_dead", is_dead)
 		return
 	if velocity.x:
 		get_flipped_h(velocity.x < 0)

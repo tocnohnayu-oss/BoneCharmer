@@ -44,7 +44,8 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is not Unit and not is_destroying_by_projectiles:
 		return
-	if body.is_in_group("Enemy" if type == Type.ALLY else "Player_Skeleton") and current_state != State.DESTROY:
+	if body.type != type and current_state != State.DESTROY:
+		print("hit")
 		body.hit(damage)
 		destroy()
 
@@ -54,8 +55,8 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 
 func destroy():
-		$CollisionShape2D.disabled = true
+		$CollisionShape2D.set_deferred("disabled", true)
 		current_state = State.DESTROY
-		monitorable = false
-		monitoring = false
+		set_deferred("monitorable", false) 
+		set_deferred("monitoring", false)
 		sprite.play("destroy")

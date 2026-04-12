@@ -1,3 +1,4 @@
+class_name Unit_group
 extends Area2D
 
 
@@ -8,7 +9,7 @@ func _ready() -> void:
 	unit_killed.connect(_on_unit_killed)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
