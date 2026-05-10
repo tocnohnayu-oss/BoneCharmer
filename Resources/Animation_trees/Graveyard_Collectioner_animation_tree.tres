@@ -1,0 +1,51 @@
+[gd_resource type="AnimationNodeStateMachine" format=3 uid="uid://i66vbkttclte"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lac8k"]
+animation = &"Attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g1alq"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_np5vs"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_cwl4k"]
+states/Attack/node = SubResource("AnimationNodeAnimation_lac8k")
+states/Attack/position = Vector2(523, 112)
+states/Start/position = Vector2(211, 119)
+transitions = ["Start", "Attack", SubResource("AnimationNodeStateMachineTransition_g1alq"), "Attack", "End", SubResource("AnimationNodeStateMachineTransition_np5vs")]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_y7mq2"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y0sti"]
+animation = &"Death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_63q8l"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_tnugs"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y0sti"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lac8k"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r1qe3"]
+advance_mode = 2
+
+[resource]
+states/Attack/node = SubResource("AnimationNodeStateMachine_cwl4k")
+states/Attack/position = Vector2(687.2734, 133)
+states/AttackWalk/node = SubResource("AnimationNodeStateMachine_y7mq2")
+states/AttackWalk/position = Vector2(561.2734, 23.52301)
+states/Death/node = SubResource("AnimationNodeAnimation_y0sti")
+states/Death/position = Vector2(1017.2734, 246)
+states/End/position = Vector2(1262, 154)
+states/Idle/node = SubResource("AnimationNodeAnimation_63q8l")
+states/Idle/position = Vector2(386.27338, 139.52301)
+states/Start/position = Vector2(226, 133)
+states/Walk/node = SubResource("AnimationNodeStateMachine_tnugs")
+states/Walk/position = Vector2(561.2734, 223.52301)
+transitions = ["Death", "End", SubResource("AnimationNodeStateMachineTransition_y0sti"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_lac8k"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_r1qe3")]
+graph_offset = Vector2(124.27338, 49.52301)

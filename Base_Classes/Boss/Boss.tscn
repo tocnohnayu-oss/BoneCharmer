@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://bqidkc6w4lp8c"]
+
+[ext_resource type="Script" uid="uid://c0hdvwcdaey7i" path="res://Base_Classes/Boss/boss.gd" id="1_cwl4k"]
+[ext_resource type="Texture2D" uid="uid://c8aulbunf4uet" path="res://Assets/Units/Skeleton/Shadow/Shadow.png" id="1_d6ll4"]
+[ext_resource type="Script" uid="uid://bb0t2ovl7wifo" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_rrmhx"]
+[ext_resource type="Script" uid="uid://8hn4kne15ac5" path="res://addons/beehave/nodes/composites/selector.gd" id="3_cwl4k"]
+[ext_resource type="Script" uid="uid://cg016dbe7gs1x" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_y7mq2"]
+[ext_resource type="Script" uid="uid://fkgy568k7cqw" path="res://Base_Classes/Boss/Beehave_Scripts/AttackSequence/Is_attack_conditions.gd" id="5_rrmhx"]
+[ext_resource type="Script" uid="uid://mkpdufl6rgdb" path="res://Base_Classes/Boss/Beehave_Scripts/WalkSequence/AttackWalk/Is_READY.gd" id="7_inn45"]
+[ext_resource type="Script" uid="uid://b6xuhchbqdqes" path="res://Base_Classes/Boss/Beehave_Scripts/WalkSequence/AttackWalk/ATTACKWALK.gd" id="7_y7mq2"]
+[ext_resource type="Script" uid="uid://c1pf4s1gng7gf" path="res://Base_Classes/Boss/Beehave_Scripts/WalkSequence/Walk/WALK.gd" id="8_inn45"]
+[ext_resource type="Script" uid="uid://ybk1nxkm88h6" path="res://Base_Classes/Boss/Beehave_Scripts/WalkSequence/AttackWalk/Is_Enemy_Valid.gd" id="8_y7mq2"]
+[ext_resource type="Script" uid="uid://dmij2gw67eqnp" path="res://Base_Classes/Boss/Beehave_Scripts/IdleSequence/IDLE.gd" id="10_gvw1u"]
+[ext_resource type="Script" uid="uid://dorri1tul8gfx" path="res://addons/beehave/nodes/decorators/delayer.gd" id="11_inn45"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://bg0idw1xq5q6x" path="res://Resources/Animation_trees/Boss_animation_tree.tres" id="13_inn45"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lct5g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cwl4k"]
+radius = 157.68958
+
+[node name="Boss" type="CharacterBody2D" unique_id=124655903 groups=["Boss"]]
+y_sort_enabled = true
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("1_cwl4k")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=587862917 groups=["Enemy"]]
+visible = false
+texture = ExtResource("1_d6ll4")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=933989947]
+sprite_frames = SubResource("SpriteFrames_lct5g")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="." unique_id=1663487084]
+
+[node name="HPBar" type="Node2D" parent="." unique_id=1309928408]
+
+[node name="HPBar" type="TextureProgressBar" parent="HPBar" unique_id=571301029]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BossNavigationAgent" type="NavigationAgent2D" parent="." unique_id=1556814724]
+path_desired_distance = 5.0
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="BossStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1904057367]
+
+[node name="BossBeehaveTree" type="Node" parent="." unique_id=300217057 node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("2_rrmhx")
+blackboard = NodePath("@Node@18563")
+custom_monitor = true
+actor = NodePath("..")
+metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
+
+[node name="ChooseState" type="Node" parent="BossBeehaveTree" unique_id=2000036277]
+script = ExtResource("3_cwl4k")
+metadata/_custom_type_script = "uid://8hn4kne15ac5"
+
+[node name="AttackSequence" type="Node" parent="BossBeehaveTree/ChooseState" unique_id=1196185763]
+script = ExtResource("4_y7mq2")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="Is_attack_conditions" type="Node" parent="BossBeehaveTree/ChooseState/AttackSequence" unique_id=735565708]
+script = ExtResource("5_rrmhx")
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"
+
+[node name="WalkSequence" type="Node" parent="BossBeehaveTree/ChooseState" unique_id=1569386149]
+script = ExtResource("4_y7mq2")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="Is_READY" type="Node" parent="BossBeehaveTree/ChooseState/WalkSequence" unique_id=829915970]
+script = ExtResource("7_inn45")
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"
+
+[node name="ChooseWalkType" type="Node" parent="BossBeehaveTree/ChooseState/WalkSequence" unique_id=1916804880]
+script = ExtResource("3_cwl4k")
+metadata/_custom_type_script = "uid://8hn4kne15ac5"
+
+[node name="AttackWalkSequence" type="Node" parent="BossBeehaveTree/ChooseState/WalkSequence/ChooseWalkType" unique_id=358846100]
+script = ExtResource("4_y7mq2")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="Is_Enemy_Valid" type="Node" parent="BossBeehaveTree/ChooseState/WalkSequence/ChooseWalkType/AttackWalkSequence" unique_id=801185471]
+script = ExtResource("8_y7mq2")
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"
+
+[node name="ATTACKWALK" type="Node" parent="BossBeehaveTree/ChooseState/WalkSequence/ChooseWalkType/AttackWalkSequence" unique_id=1339899705]
+script = ExtResource("7_y7mq2")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="WALK" type="Node" parent="BossBeehaveTree/ChooseState/WalkSequence/ChooseWalkType" unique_id=1031603484]
+script = ExtResource("8_inn45")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="IdleSequence" type="Node" parent="BossBeehaveTree/ChooseState" unique_id=1511785075]
+script = ExtResource("4_y7mq2")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="DelayDecorator" type="Node" parent="BossBeehaveTree/ChooseState/IdleSequence" unique_id=1275501518]
+script = ExtResource("11_inn45")
+wait_time = 1.0
+metadata/_custom_type_script = "uid://dorri1tul8gfx"
+
+[node name="IDLE" type="Node" parent="BossBeehaveTree/ChooseState/IdleSequence/DelayDecorator" unique_id=1046182738]
+script = ExtResource("10_gvw1u")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1663873364]
+tree_root = ExtResource("13_inn45")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/is_dead = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1756768469]
+
+[node name="TriggerZone" type="Area2D" parent="." unique_id=2024926002]
+collision_layer = 2
+
+[node name="CollisionShape" type="CollisionShape2D" parent="TriggerZone" unique_id=1742382182]
+shape = SubResource("CircleShape2D_cwl4k")

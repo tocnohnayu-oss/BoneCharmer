@@ -1,0 +1,23 @@
+[gd_resource type="AnimationNodeStateMachine" format=3 uid="uid://bg0idw1xq5q6x"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_muv5c"]
+animation = &"Death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gvloj"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_muv5c"]
+advance_mode = 2
+advance_condition = &"is_dead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gvloj"]
+
+[resource]
+states/Death/node = SubResource("AnimationNodeAnimation_muv5c")
+states/Death/position = Vector2(882.2734, 154)
+states/End/position = Vector2(1262, 154)
+states/Idle/node = SubResource("AnimationNodeAnimation_gvloj")
+states/Idle/position = Vector2(568.2734, 148.52301)
+states/Start/position = Vector2(228, 133)
+transitions = ["Idle", "Death", SubResource("AnimationNodeStateMachineTransition_muv5c"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_gvloj")]
+graph_offset = Vector2(115.27338, 36.52301)

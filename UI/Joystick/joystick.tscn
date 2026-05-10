@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://bytlf8p8eetsi"]
+
+[ext_resource type="Script" uid="uid://d361t8y6sahvi" path="res://addons/virtual_joystick/virtual_joystick.gd" id="1_n3yge"]
+[ext_resource type="Material" uid="uid://cqnu2wtnaybgo" path="res://Resources/Shaders/joystick_base.tres" id="2_2vcm0"]
+[ext_resource type="Texture2D" uid="uid://cwhacn8sl0sw6" path="res://Assets/Player/Shadow/Shadow.png" id="3_t2ml7"]
+[ext_resource type="Texture2D" uid="uid://c8aulbunf4uet" path="res://Assets/Units/Skeleton/Shadow/Shadow.png" id="4_j8xvc"]
+
+[node name="MoveJoystick" type="Control" unique_id=1703761636]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n3yge")
+metadata/_custom_type_script = "uid://d361t8y6sahvi"
+
+[node name="Base" type="TextureRect" parent="." unique_id=1588210241]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.2)
+show_behind_parent = true
+material = ExtResource("2_2vcm0")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.061423566
+anchor_top = 0.6045679
+anchor_right = 0.22566673
+anchor_bottom = 0.8969136
+offset_left = 0.24005127
+offset_top = 0.24002075
+offset_right = 0.031982422
+offset_bottom = -0.2000122
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_t2ml7")
+metadata/_edit_use_anchors_ = true
+
+[node name="Stick" type="TextureRect" parent="." unique_id=468038088]
+unique_name_in_owner = true
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.09456946
+anchor_top = 0.66333336
+anchor_right = 0.19459027
+anchor_bottom = 0.8414815
+offset_left = 0.055984497
+offset_top = 0.1599884
+offset_right = -0.16799927
+offset_bottom = -0.27999878
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_j8xvc")
+metadata/_edit_use_anchors_ = true

@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://d3o216prygsc2"]
+
+[ext_resource type="PackedScene" uid="uid://bck0ipanithup" path="res://Base_Classes/Weapon/Weapon.tscn" id="1_7nk5o"]
+[ext_resource type="Texture2D" uid="uid://c3235uo5nx5ic" path="res://Assets/Bosses/Graveyard_Collectioner/Weapons/battle_axe.png" id="2_sap6l"]
+[ext_resource type="Script" uid="uid://lau1gt21ptv8" path="res://Bosses/Graveyard_Collectioner/Weapons/Battle_Axe/battle_axe.gd" id="3_sap6l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpfa8"]
+atlas = ExtResource("2_sap6l")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lfyuh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpfa8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Weapon" unique_id=1944367989 instance=ExtResource("1_7nk5o")]
+rotation = -0.37350047
+sprite_frames = SubResource("SpriteFrames_lfyuh")
+script = ExtResource("3_sap6l")

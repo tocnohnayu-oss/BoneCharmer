@@ -5,10 +5,11 @@
 [sub_resource type="SpriteFrames" id="SpriteFrames_qtm7n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wphne"]
-radius = 8.0
+radius = 12.0
 
 [node name="Projectile" type="Area2D" unique_id=2122621666]
-collision_mask = 3
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_q0ipr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1917488764]
@@ -17,5 +18,6 @@ sprite_frames = SubResource("SpriteFrames_qtm7n")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1834941075]
 shape = SubResource("CircleShape2D_wphne")
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

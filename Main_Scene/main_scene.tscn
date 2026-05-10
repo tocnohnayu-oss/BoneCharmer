@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://p0my538ebm6r"]
 
 [ext_resource type="Script" uid="uid://b87wqprwi3keb" path="res://Main_Scene/main_scene.gd" id="1_gyfs4"]
+[ext_resource type="PackedScene" uid="uid://bytlf8p8eetsi" path="res://UI/Joystick/joystick.tscn" id="2_bpy27"]
+[ext_resource type="Material" uid="uid://cqnu2wtnaybgo" path="res://Resources/Shaders/joystick_base.tres" id="2_j4ghw"]
+[ext_resource type="Texture2D" uid="uid://c8aulbunf4uet" path="res://Assets/Units/Skeleton/Shadow/Shadow.png" id="3_fxavw"]
+[ext_resource type="Texture2D" uid="uid://bn7qo0sx3spqm" path="res://Assets/UIAssets/Buttons/summon_button.png" id="4_owqrj"]
 
 [node name="Main Scene" type="Node2D" unique_id=1931658074 groups=["Main_Scene"]]
 y_sort_enabled = true
@@ -11,6 +15,59 @@ script = ExtResource("1_gyfs4")
 volume_db = -9.123
 
 [node name="UI_Layer" type="CanvasLayer" parent="." unique_id=1500961897]
+
+[node name="MobileInput" type="CanvasLayer" parent="." unique_id=1324251713]
+
+[node name="Control" type="Control" parent="MobileInput" unique_id=1454688299]
+layout_mode = 3
+anchor_left = 0.8
+anchor_top = 0.24200001
+anchor_right = 0.98300004
+anchor_bottom = 0.57000005
+offset_left = 0.4000244
+offset_top = 182.18402
+offset_right = -210.41595
+offset_bottom = -30.360016
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(6.6202116, 0.85754037)
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="MobileInput/Control" unique_id=50964481]
+material = ExtResource("2_j4ghw")
+position = Vector2(0, -213.28214)
+scale = Vector2(1, 7.6650667)
+texture_normal = ExtResource("3_fxavw")
+texture_pressed = ExtResource("3_fxavw")
+action = "summon"
+
+[node name="TextureRect" type="TextureRect" parent="MobileInput/Control/TouchScreenButton" unique_id=449437667]
+anchors_preset = -1
+anchor_right = 0.95800006
+anchor_bottom = 0.95100003
+offset_left = -0.1919632
+offset_top = 0.31535244
+offset_right = 1.1520348
+offset_bottom = 1.8833523
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_owqrj")
+
+[node name="MoveJoystick" parent="MobileInput" unique_id=1703761636 instance=ExtResource("2_bpy27")]
+anchors_preset = -1
+
+[node name="AttackJoystick" parent="MobileInput" unique_id=537553138 instance=ExtResource("2_bpy27")]
+anchors_preset = -1
+anchor_left = 0.68100005
+anchor_top = 0.0050000004
+anchor_right = 1.6810001
+offset_left = 11.487915
+offset_top = -0.24000025
+offset_right = 11.487915
+offset_bottom = 3.0
+action_left = &"attack_left"
+action_up = &"attack_up"
+action_right = &"attack_right"
+action_down = &"attack_down"
 
 [node name="SoundEffectsPlayer" type="AudioStreamPlayer" parent="." unique_id=1451136875]
 

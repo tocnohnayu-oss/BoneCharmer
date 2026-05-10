@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dn4caaw1ge2ub"]
+
+[ext_resource type="PackedScene" uid="uid://bck0ipanithup" path="res://Base_Classes/Weapon/Weapon.tscn" id="1_eh0rk"]
+[ext_resource type="Texture2D" uid="uid://cqa2dsueeg8xf" path="res://Assets/Bosses/Graveyard_Collectioner/Weapons/spear.png" id="2_8krjj"]
+[ext_resource type="Script" uid="uid://2htcbyf721pl" path="res://Bosses/Graveyard_Collectioner/Weapons/Spear/spear.gd" id="3_s1vii"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6emy"]
+atlas = ExtResource("2_8krjj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_htbfb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6emy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Weapon" unique_id=1944367989 instance=ExtResource("1_eh0rk")]
+rotation = -0.7853982
+scale = Vector2(1.962, 1.962)
+sprite_frames = SubResource("SpriteFrames_htbfb")
+script = ExtResource("3_s1vii")

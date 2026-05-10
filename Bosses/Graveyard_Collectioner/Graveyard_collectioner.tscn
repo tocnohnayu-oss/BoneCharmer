@@ -1,0 +1,736 @@
+[gd_scene format=3 uid="uid://cy10c0u4tjhv0"]
+
+[ext_resource type="PackedScene" uid="uid://bqidkc6w4lp8c" path="res://Base_Classes/Boss/Boss.tscn" id="1_7fuju"]
+[ext_resource type="Script" uid="uid://otkuiuimfvjg" path="res://Bosses/Graveyard_Collectioner/graveyard_collectioner.gd" id="2_b5608"]
+[ext_resource type="Texture2D" uid="uid://dnxbch1n7c80i" path="res://Assets/Bosses/Graveyard_Collectioner/Animations/graveyard_boss_head.png" id="2_mnhk4"]
+[ext_resource type="Texture2D" uid="uid://cv0ks13chxxp0" path="res://Assets/Bosses/Graveyard_Collectioner/Inner_Fire/graveyard_boss_fire-Sheet.png" id="3_jieu8"]
+[ext_resource type="Texture2D" uid="uid://c8xubr4cku1bc" path="res://Assets/Bosses/Graveyard_Collectioner/Animations/graveyard_boss_body.png" id="4_psdwq"]
+[ext_resource type="PackedScene" uid="uid://d3o216prygsc2" path="res://Bosses/Graveyard_Collectioner/Weapons/Battle_Axe/Battle_Axe.tscn" id="5_jieu8"]
+[ext_resource type="PackedScene" uid="uid://dn4caaw1ge2ub" path="res://Bosses/Graveyard_Collectioner/Weapons/Spear/Spear.tscn" id="6_psdwq"]
+[ext_resource type="Texture2D" uid="uid://v0pofseq50hw" path="res://Assets/Bosses/Progress_Bar/Under_progress_bar.png" id="7_fb133"]
+[ext_resource type="Texture2D" uid="uid://coih2c0uas5kx" path="res://Assets/Bosses/Progress_Bar/over_progress_bar.png" id="8_b5608"]
+[ext_resource type="Texture2D" uid="uid://bjtoennlgs3g5" path="res://Assets/Bosses/Progress_Bar/Progress_progress_bar.png" id="9_gtufv"]
+[ext_resource type="Texture2D" uid="uid://bxlbh3uwftkqw" path="res://Assets/Bosses/Boss_Logo/boss_logo.png" id="10_c4o57"]
+[ext_resource type="Script" uid="uid://dorri1tul8gfx" path="res://addons/beehave/nodes/decorators/delayer.gd" id="12_c4o57"]
+[ext_resource type="Script" uid="uid://dvnmhlldp23hg" path="res://addons/beehave/nodes/composites/selector_random.gd" id="12_thtrd"]
+[ext_resource type="Script" uid="uid://6y7ukwee7olh" path="res://Bosses/Graveyard_Collectioner/ATTACK/choose_spear.gd" id="13_btdd2"]
+[ext_resource type="Script" uid="uid://beykiugo8x4vh" path="res://Bosses/Graveyard_Collectioner/ATTACK/attack.gd" id="13_c4o57"]
+[ext_resource type="Script" uid="uid://cvgf7hs0je73c" path="res://Bosses/Graveyard_Collectioner/ATTACK/choose_battle_axe.gd" id="14_jfgwl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a36gk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mnhk4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3uula"]
+atlas = ExtResource("3_jieu8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fb133"]
+atlas = ExtResource("3_jieu8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5608"]
+atlas = ExtResource("3_jieu8")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtufv"]
+atlas = ExtResource("3_jieu8")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4o57"]
+atlas = ExtResource("3_jieu8")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5jkxm"]
+atlas = ExtResource("3_jieu8")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_thtrd"]
+atlas = ExtResource("3_jieu8")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_btdd2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3uula")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fb133")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5608")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtufv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4o57")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5jkxm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_thtrd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jfgwl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_psdwq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jieu8"]
+radius = 20.0
+
+[sub_resource type="Animation" id="Animation_jieu8"]
+resource_name = "Attack"
+length = 1.95
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667, 0.70000005, 1.0666667, 1.95),
+"transitions": PackedFloat32Array(2.0000005, 2.0000005, 0.43527514, 0.4204482, 0.45062527),
+"update": 0,
+"values": [Vector2(0.99999994, -39), Vector2(0.99999994, -50), Vector2(0.99999994, -40), Vector2(0.99999994, -64), Vector2(1, -39)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.36666667, 0.70000005, 1.0666667, 1.95),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.5462881, 0.20420352, 0.7190757, -0.008726646]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Weapons:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.95),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Weapons/BattleAxe:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.53333336, 1.1, 1.5200001, 1.95),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.37350047, -1.8517944, -4.2167154728183, -4.982915014443811, -6.656686]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.36666667, 0.8333334, 1.3333334, 1.7, 1.95),
+"transitions": PackedFloat32Array(2.2191396, 2.1435468, 1.9318728, 0.6155722, 0.5358867, 0.59460354),
+"update": 0,
+"values": [Vector2(-9.536743e-07, -9.536743e-07), Vector2(-9.536743e-07, 8), Vector2(0, -6), Vector2(0, 18), Vector2(0, -16), Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.53333336, 1.2333333, 1.6333334, 1.9333334),
+"transitions": PackedFloat32Array(2.297397, 1.9318728, 0.46651652, 0.4999999, 0.46651652),
+"update": 0,
+"values": [0.0, -0.3647738, 0.5427974, -0.30717796, 0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Weapons/Spear:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.53333336, 1.1, 1.5333334, 1.95),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.7853982, -1.8517944, -4.2167154728183, -4.982915014443811, -7.0685835]
+}
+
+[sub_resource type="Animation" id="Animation_psdwq"]
+resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.8000001, 1),
+"transitions": PackedFloat32Array(1.9318728, 2.0000005, 0.5547847, 0.5358867, 0.49999997),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -10), Vector2(0, 3.999999), Vector2(0, -42), Vector2(0, 16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.8000001, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.3647738, -0.3630285, 0.3647738, -0.5462881]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.8000001, 1),
+"transitions": PackedFloat32Array(2.1435468, 2.1435473, 1, 0.46651644, 0.49999997),
+"update": 0,
+"values": [Vector2(0.99999994, -39.34625), Vector2(0.99999994, -54.000004), Vector2(0.99999994, -34), Vector2(0.99999994, -104), Vector2(0.99999994, 22)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Head:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.8000001, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.16383861, -0.5637413, 0.16406095, -0.5637413, 0.8150688]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Weapons/BattleAxe:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.8000001, 1),
+"transitions": PackedFloat32Array(2.0000005, 1.8660665, 1, 0.5176325, 0.6155722),
+"update": 0,
+"values": [Vector2(-4.000001, 46.999996), Vector2(-3.8100042, 26), Vector2(-3.8099964, 64), Vector2(-3.8100119, -10), Vector2(-3.8099897, 96)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Weapons/BattleAxe:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.8000001, 1),
+"transitions": PackedFloat32Array(2.0000002, 2.07053, 0.59460354, 0.5547847, 0.55478466),
+"update": 0,
+"values": [-6.656686, -6.101671, -7.192502, -7.908087, 3.1869712]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Weapons/Spear:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.8000001, 1),
+"transitions": PackedFloat32Array(2.2191393, 2.4622889, 0.5358867, 0.5358867, 0.4506252),
+"update": 0,
+"values": [Vector2(-2.000002, -37), Vector2(-2.0000079, -70), Vector2(-2.000001, -32), Vector2(-2.0000248, -166), Vector2(-2, -40.325)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Weapons/Spear:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.8000001, 1),
+"transitions": PackedFloat32Array(2.143547, 2.0000005, 0.49999997, 0.5547846, 0.57434905),
+"update": 0,
+"values": [-7.0685835, -6.544985, -7.749262, -6.2482786, 2.857104]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Sprite/InnerFire3:self_modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.86666673, 1),
+"transitions": PackedFloat32Array(0.37892917, 0.46651644),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Sprite/InnerFire2:self_modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.86666673, 1),
+"transitions": PackedFloat32Array(0.53588665, 0.5547847),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Sprite/InnerFire:self_modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.86666673, 1),
+"transitions": PackedFloat32Array(0.43527535, 0.32987705),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Head/InnerFire:self_modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0.86666673, 1),
+"transitions": PackedFloat32Array(0.39229208, 0.4352754),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0e7nx"]
+resource_name = "Idle"
+length = 1.95
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.86, 1.95),
+"transitions": PackedFloat32Array(1.4142134, 0.73204297, 7.7274885),
+"update": 0,
+"values": [Vector2(0.99999994, -39), Vector2(1, -46.605), Vector2(0.99999994, -39)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.53333336, 0.86666673, 1.3533334, 1.95),
+"transitions": PackedFloat32Array(0.8408963, 1, 0.73204297, 1.3660403, 1.8025),
+"update": 0,
+"values": [0.0, 0.0, -0.3298672, 0.3298672, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.86666673, 1.9333334),
+"transitions": PackedFloat32Array(1.4142119, 1.2745607, 1.6817961),
+"update": 0,
+"values": [Vector2(-9.536743e-07, -9.536743e-07), Vector2(0, 4.52), Vector2(-9.390025e-07, 0.158844)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Weapons:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.95),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Weapons/BattleAxe:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.53333336, 1.1, 1.5200001, 1.95),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.37350047, -1.8517944, -4.2167154728183, -4.982915014443811, -6.656686]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Weapons/Spear:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.53333336, 1.1, 1.5333334, 1.95),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.7853982, -1.8517944, -4.2167154728183, -4.982915014443811, -7.0685835]
+}
+
+[sub_resource type="Animation" id="Animation_fsjrj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.99999994, -39)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-9.536743e-07, -9.536743e-07)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Weapons:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Weapons/BattleAxe:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.37350047]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Weapons/Spear:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.7853982]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Weapons/BattleAxe:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-4.000001, 46.999996)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Weapons/Spear:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2.000002, -37)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Sprite/InnerFire3:self_modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Sprite/InnerFire2:self_modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Sprite/InnerFire:self_modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Head/InnerFire:self_modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fb133"]
+resource_name = "Walk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.99999994, -39)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7bxyl"]
+_data = {
+&"Attack": SubResource("Animation_jieu8"),
+&"Death": SubResource("Animation_psdwq"),
+&"Idle": SubResource("Animation_0e7nx"),
+&"RESET": SubResource("Animation_fsjrj"),
+&"Walk": SubResource("Animation_fb133")
+}
+
+[node name="Boss" unique_id=124655903 instance=ExtResource("1_7fuju")]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_b5608")
+
+[node name="Head" type="AnimatedSprite2D" parent="." index="0" unique_id=656471285]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(0.99999994, -39)
+scale = Vector2(2.0799997, 2.0799997)
+sprite_frames = SubResource("SpriteFrames_a36gk")
+frame_progress = 0.8380359
+speed_scale = 0.0
+
+[node name="InnerFire" type="AnimatedSprite2D" parent="Head" index="0" unique_id=378588584]
+y_sort_enabled = true
+position = Vector2(-0.96153855, -2.8846152)
+scale = Vector2(1.1293364, 1.1293364)
+sprite_frames = SubResource("SpriteFrames_btdd2")
+autoplay = "default"
+frame_progress = 0.7104526
+
+[node name="Shadow" parent="." index="1" unique_id=587862917]
+position = Vector2(0, 20)
+
+[node name="Sprite" parent="." index="2" unique_id=933989947]
+y_sort_enabled = true
+position = Vector2(-9.536743e-07, -9.536743e-07)
+scale = Vector2(1.90625, 1.90625)
+sprite_frames = SubResource("SpriteFrames_jfgwl")
+
+[node name="InnerFire3" type="AnimatedSprite2D" parent="Sprite" index="0" unique_id=1850721684]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(-10.491805, 6.819674)
+rotation = 0.89700377
+scale = Vector2(0.8769526, 0.8769526)
+sprite_frames = SubResource("SpriteFrames_btdd2")
+autoplay = "default"
+frame_progress = 0.08054509
+flip_v = true
+
+[node name="InnerFire2" type="AnimatedSprite2D" parent="Sprite" index="1" unique_id=2114307058]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(10.491805, 6.295084)
+rotation = 0.89700377
+scale = Vector2(0.8769526, 0.8769526)
+sprite_frames = SubResource("SpriteFrames_btdd2")
+autoplay = "default"
+frame_progress = 0.8651047
+
+[node name="InnerFire" type="AnimatedSprite2D" parent="Sprite" index="2" unique_id=1372490684]
+y_sort_enabled = true
+position = Vector2(-0.5245897, -0.5245897)
+scale = Vector2(1.3793367, 1.3793367)
+sprite_frames = SubResource("SpriteFrames_btdd2")
+autoplay = "default"
+frame_progress = 0.9276933
+
+[node name="CollisionShape" parent="." index="3" unique_id=1663487084]
+shape = SubResource("CircleShape2D_jieu8")
+
+[node name="Weapons" type="Node2D" parent="." index="4" unique_id=461289634]
+y_sort_enabled = true
+
+[node name="BattleAxe" parent="Weapons" index="0" unique_id=1944367989 instance=ExtResource("5_jieu8")]
+y_sort_enabled = true
+position = Vector2(-4.000001, 46.999996)
+scale = Vector2(2.2482874, 2.2482874)
+
+[node name="Spear" parent="Weapons" index="1" unique_id=573362918 instance=ExtResource("6_psdwq")]
+y_sort_enabled = true
+position = Vector2(-2.000002, -37)
+scale = Vector2(1.9616724, 1.9616724)
+frame_progress = 0.6720382
+
+[node name="HPBar" parent="HPBar" parent_id_path=PackedInt32Array(1309928408) index="0" unique_id=571301029]
+offset_left = -36.0
+offset_top = -100.0
+offset_right = 4.0
+offset_bottom = -60.0
+scale = Vector2(6.4399996, 6.4399996)
+max_value = 500.0
+value = 250.0
+texture_under = ExtResource("7_fb133")
+texture_over = ExtResource("8_b5608")
+texture_progress = ExtResource("9_gtufv")
+
+[node name="TextureRect" type="TextureRect" parent="HPBar" parent_id_path=PackedInt32Array(1309928408) index="1" unique_id=1459261850]
+offset_left = -64.0
+offset_top = -112.0
+offset_right = -24.0
+offset_bottom = -72.0
+texture = ExtResource("10_c4o57")
+
+[node name="BossNavigationAgent" parent="." index="6" unique_id=1556814724]
+path_desired_distance = 3.0
+
+[node name="BossBeehaveTree" parent="." index="8" unique_id=300217057 node_paths=PackedStringArray("blackboard")]
+blackboard = NodePath("@Node@18566")
+
+[node name="SelectorRandomComposite" type="Node" parent="BossBeehaveTree/ChooseState/AttackSequence" parent_id_path=PackedInt32Array(1196185763) index="1" unique_id=907839793]
+script = ExtResource("12_thtrd")
+metadata/_custom_type_script = "uid://dvnmhlldp23hg"
+
+[node name="CHOOSE_SPEAR" type="Node" parent="BossBeehaveTree/ChooseState/AttackSequence/SelectorRandomComposite" index="0" unique_id=757956071]
+script = ExtResource("13_btdd2")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="CHOOSE_BATTLE_AXE" type="Node" parent="BossBeehaveTree/ChooseState/AttackSequence/SelectorRandomComposite" index="1" unique_id=1243821604]
+script = ExtResource("14_jfgwl")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="DelayDecorator" type="Node" parent="BossBeehaveTree/ChooseState/AttackSequence" parent_id_path=PackedInt32Array(1196185763) index="2" unique_id=1385591513]
+script = ExtResource("12_c4o57")
+wait_time = 0.5
+metadata/_custom_type_script = "uid://dorri1tul8gfx"
+
+[node name="ATTACK" type="Node" parent="BossBeehaveTree/ChooseState/AttackSequence/DelayDecorator" index="0" unique_id=230827952]
+script = ExtResource("13_c4o57")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="AnimationPlayer" parent="." index="10" unique_id=1756768469]
+libraries/ = SubResource("AnimationLibrary_7bxyl")
+
+[node name="TriggerZone" parent="." index="11" unique_id=2024926002]
+visible = false
+y_sort_enabled = true

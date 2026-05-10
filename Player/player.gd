@@ -16,14 +16,20 @@ var current_state = State.IDLE
 @onready var skeleton_scene = preload("res://Units/Skeleton/Skeleton.tscn")
 @onready var audio_player = $audio_player
 @export var summon_area = 50.0
+var is_dead = false
 var is_able_to_attack = true
 var active_weapon
+var attack_range = 350.0
+var main_scene
+var is_mobile
 
 func _ready() -> void:
+	main_scene = get_tree().get_first_node_in_group("Main_Scene")
+	is_mobile = main_scene.is_mobile_debug or OS.get_name() in ["Android", "IOS"]
 	current_state = State.IDLE
 	update_state()
 	shadow.visible = true
-	change_weapon($MagicStaff)
+	change_weapon(magic_staff)
 
 
 func _physics_process(delta: float) -> void:
@@ -45,11 +51,14 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func _input(event):
-	if event.is_action_pressed("attack"):
+func _process(_delta: float) -> void:
+	if Input.is_action_pressed("attack") and not is_mobile:
 		current_state = State.ATTACK
 		update_state()
-	elif event.is_action_pressed("summon"):
+
+
+func _input(event):
+	if event.is_action_pressed("summon"):
 		revive_skeletons_in_area()
 
 func update_state() -> void:
@@ -64,7 +73,7 @@ func update_state() -> void:
 			walk()
 		State.ATTACK:
 			#animation_type = &"attack"
-			animation_type = &"idle"
+			animation_type = sprite.animation
 			attack()
 		State.HIT:
 			#animation_type = &"hit"
@@ -87,13 +96,24 @@ func attack() -> void:
 	if audio_player.playing and audio_player.get_playback_position() <= active_weapon.cooldown:
 		current_state = State.IDLE
 		return
-	var target = get_global_mouse_position()
-	var attack_direction = target - global_position
-	attack_direction = attack_direction.normalized()
+	var target
+	var attack_direction
+	if is_mobile:
+		var direction = Vector2.ZERO
+		direction.x = Input.get_axis("attack_left", "attack_right")
+		direction.y = Input.get_axis("attack_up", "attack_down")
+		if not direction:
+			return
+		direction = direction.normalized()
+		target = direction * attack_range
+		attack_direction = direction
+	else:
+		target = get_global_mouse_position()
+		attack_direction = global_position.direction_to(target)
 	magic_staff.create_bullet(attack_direction, target)
 	get_tree().call_group("Player_Skeleton", "follow_player")
 	current_state = State.IDLE
-	change_weapon($MagicStaff)
+	change_weapon(magic_staff)
 	is_able_to_attack = false
 	audio_player.play()
 
@@ -115,7 +135,11 @@ func revive_skeletons_in_area():
 	var skeletons = get_tree().get_nodes_in_group("Skeleton")
 	if not skeletons:
 		return
-	var target_area = get_global_mouse_position()
+	var target_area
+	if not is_mobile:
+		target_area = get_global_mouse_position()
+	else:
+		target_area = global_position
 	var max_distance = 50.0
 	for skeleton in skeletons:
 		if target_area.distance_to(skeleton.global_position) <= max_distance and skeleton.is_dead:

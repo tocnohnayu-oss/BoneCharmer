@@ -256,4 +256,4 @@ autoplay = "idle"
 position = Vector2(-1, 3)
 
 [node name="BeehaveTree" parent="." index="10" unique_id=245089707 node_paths=PackedStringArray("blackboard")]
-blackboard = NodePath("@Node@153213")
+blackboard = NodePath("@Node@18561")

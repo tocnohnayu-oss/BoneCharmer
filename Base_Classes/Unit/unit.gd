@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 
 @onready var sprite = $UnitAnimatedSprite as AnimatedSprite2D
+@onready var splash_tres = preload("res://Resources/sprite_frames/splash_effect.tres")
 @onready var triangle_sprite = $TeamTriangle
 @onready var nav_agent = $UnitNavigationAgent
 @onready var idle_timer = $IdleTimer
@@ -19,7 +20,8 @@ extends CharacterBody2D
 @onready var unit_collision = $UnitCollision
 enum Type {
 	ALLY,
-	ENEMY
+	ENEMY,
+	BOSS
 }
 var type = Type.ENEMY
 var is_dead = false
@@ -55,6 +57,14 @@ func _ready() -> void:
 func hit(value):
 	if is_dead:
 		return
+	var splash_sprite = AnimatedSprite2D.new()
+	splash_sprite.sprite_frames = splash_tres
+	splash_sprite.self_modulate.a = 0.9
+	splash_sprite.flip_h = !sprite.flip_h
+	add_child(splash_sprite)
+	splash_sprite.position += Vector2(-10.0 if sprite.flip_h else 10.0, 0.0)
+	splash_sprite.play(&"default")
+	splash_sprite.animation_finished.connect(func (): splash_sprite.queue_free())
 	health = max(0, health - value)
 	update_hpbar()
 	if health == 0:
@@ -86,8 +96,11 @@ func die():
 
 
 func update_hpbar():
-	hpbar.value = health
 	anim_player.play("hpbar_appear")
+	var tween = create_tween()
+	tween.tween_property(hpbar, "value", health, 0.3)
+	tween.play()
+	await tween.finished
 	hpbar_timer.start(1)
 
 
